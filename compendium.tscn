@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://emp6k6lgtcyq"]
-
-[ext_resource type="Script" uid="uid://c8hc26uk5dh0d" path="res://compendium.gd" id="1_ffxcj"]
-
-[node name="Compendium" type="Node2D" unique_id=869016570]
-script = ExtResource("1_ffxcj")

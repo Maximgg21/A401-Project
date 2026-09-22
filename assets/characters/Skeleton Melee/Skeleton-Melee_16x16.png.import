@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nypotvc4avj6"
-path="res://.godot/imported/TitleCard.png-62d6b26c395e53b3a381b3841c970748.ctex"
+uid="uid://dsg5y6iviga35"
+path="res://.godot/imported/Skeleton-Melee_16x16.png-39a0efc4db45ff1e38915202e5f173b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TitleCard.png"
-dest_files=["res://.godot/imported/TitleCard.png-62d6b26c395e53b3a381b3841c970748.ctex"]
+source_file="res://assets/characters/Skeleton Melee/Skeleton-Melee_16x16.png"
+dest_files=["res://.godot/imported/Skeleton-Melee_16x16.png-39a0efc4db45ff1e38915202e5f173b1.ctex"]
 
 [params]
 

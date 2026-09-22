@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://34emv0co416u"]
 
-[ext_resource type="Script" uid="uid://bpprfovqjclkr" path="res://main_menu.gd" id="1_06t4h"]
-[ext_resource type="Texture2D" uid="uid://nypotvc4avj6" path="res://TitleCard.png" id="2_7vrkn"]
+[ext_resource type="Script" uid="uid://bpprfovqjclkr" path="res://scenes/main_menu.gd" id="1_ekxnf"]
+[ext_resource type="Texture2D" uid="uid://nypotvc4avj6" path="res://assets/TitleCard.png" id="2_bqqt6"]
 
 [node name="Main Menu" type="Control" unique_id=1011741582]
 layout_mode = 3
@@ -10,7 +10,7 @@ offset_left = 575.0
 offset_top = 322.0
 offset_right = 575.0
 offset_bottom = 322.0
-script = ExtResource("1_06t4h")
+script = ExtResource("1_ekxnf")
 
 [node name="MainMenuBG" type="ColorRect" parent="." unique_id=557919610]
 layout_mode = 1
@@ -36,7 +36,7 @@ anchor_bottom = 1.0
 offset_top = -241.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = ExtResource("2_7vrkn")
+texture = ExtResource("2_bqqt6")
 
 [node name="Button_manager" type="Control" parent="." unique_id=191148302]
 layout_mode = 1
