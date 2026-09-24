@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://34emv0co416u"]
+
+[ext_resource type="Script" uid="uid://bpprfovqjclkr" path="res://scenes/ui/main_menu.gd" id="1_ekxnf"]
+[ext_resource type="Texture2D" path="res://assets/art/ui/title_card.png" id="2_bqqt6"]
+
+[node name="Main Menu" type="Control" unique_id=1011741582]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 575.0
+offset_top = 322.0
+offset_right = 575.0
+offset_bottom = 322.0
+script = ExtResource("1_ekxnf")
+
+[node name="MainMenuBG" type="ColorRect" parent="." unique_id=557919610]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -574.0
+offset_top = -323.0
+offset_right = 574.0
+offset_bottom = 323.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.24027917, 0.477056, 0.7722583, 1)
+
+[node name="Title" type="TextureRect" parent="." unique_id=1049051159]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -241.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_bqqt6")
+
+[node name="Button_manager" type="Control" parent="." unique_id=191148302]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Button_manager" unique_id=1329821863]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -214.0
+offset_right = 214.0
+offset_bottom = 212.0
+grow_horizontal = 2
+
+[node name="Start" type="Button" parent="Button_manager/VBoxContainer" unique_id=909950825]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Start"
+
+[node name="Compendium" type="Button" parent="Button_manager/VBoxContainer" unique_id=365955044]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Compendium"
+
+[node name="Options" type="Button" parent="Button_manager/VBoxContainer" unique_id=1594788515]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Options"
+
+[node name="Quit" type="Button" parent="Button_manager/VBoxContainer" unique_id=623975502]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="Button_manager/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Button_manager/VBoxContainer/Compendium" to="." method="_on_compendium_pressed"]
+[connection signal="pressed" from="Button_manager/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Button_manager/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
