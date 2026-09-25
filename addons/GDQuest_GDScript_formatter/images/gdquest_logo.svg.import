@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5mb47x0vbdkv"
-path="res://.godot/imported/water_tiles.png-ef24b76eaa3685db9a688e68b845951e.ctex"
+uid="uid://cp5vhsg54dmt5"
+path="res://.godot/imported/gdquest_logo.svg-3d69df92bc1269a9cd56d21bfb4e3dfd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tilesets/water_tiles.png"
-dest_files=["res://.godot/imported/water_tiles.png-ef24b76eaa3685db9a688e68b845951e.ctex"]
+source_file="res://addons/GDQuest_GDScript_formatter/images/gdquest_logo.svg"
+dest_files=["res://.godot/imported/gdquest_logo.svg-3d69df92bc1269a9cd56d21bfb4e3dfd.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=2.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

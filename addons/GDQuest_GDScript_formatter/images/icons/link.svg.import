@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3bfopsk5t3xb"
-path="res://.godot/imported/wall_tiles.png-808dfc737e5ecde463fc1c85cade872d.ctex"
+uid="uid://ctpras52nelx3"
+path="res://.godot/imported/link.svg-b137df11cbc30e911fb0835645149fef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tilesets/wall_tiles.png"
-dest_files=["res://.godot/imported/wall_tiles.png-808dfc737e5ecde463fc1c85cade872d.ctex"]
+source_file="res://addons/GDQuest_GDScript_formatter/images/icons/link.svg"
+dest_files=["res://.godot/imported/link.svg-b137df11cbc30e911fb0835645149fef.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=2.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

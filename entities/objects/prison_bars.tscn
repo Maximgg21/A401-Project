@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dchh2j4drjuvp"]
+
+[ext_resource type="Texture2D" uid="uid://ca4u8gnj28xhp" path="res://assets/art/tilesets/dungeon_tiles.png" id="1_4cdeo"]
+
+[node name="Node2D" type="Node2D" unique_id=2000666044]
+position = Vector2(13, 5)
+
+[node name="PrisonBar" type="Sprite2D" parent="." unique_id=1958828378]
+position = Vector2(-29, -5)
+texture = ExtResource("1_4cdeo")
+region_enabled = true
+region_rect = Rect2(144, 112, 16, 64)
+
+[node name="PrisonBar2" type="Sprite2D" parent="." unique_id=883233773]
+position = Vector2(-13, -5)
+texture = ExtResource("1_4cdeo")
+region_enabled = true
+region_rect = Rect2(144, 112, 16, 64)
+
+[node name="PrisonBar3" type="Sprite2D" parent="." unique_id=1529736357]
+position = Vector2(3, -5)
+texture = ExtResource("1_4cdeo")
+region_enabled = true
+region_rect = Rect2(144, 112, 16, 64)
+
+[node name="PrisonBarLong" type="Sprite2D" parent="." unique_id=1720638927]
+position = Vector2(-13, -29)
+scale = Vector2(1.0275, 0.98)
+texture = ExtResource("1_4cdeo")
+region_enabled = true
+region_rect = Rect2(16, 208, 48, 16)

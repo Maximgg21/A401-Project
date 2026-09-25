@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://kme5m7vmkdwx"]
+
+[ext_resource type="Texture2D" uid="uid://cksrkvi3qaxjo" path="res://assets/art/props/static/furniture.png" id="1_3ivgk"]
+
+[node name="SmallBench" type="Sprite2D" unique_id=1749755331]
+texture = ExtResource("1_3ivgk")
+region_enabled = true
+region_rect = Rect2(96, 480, 16, 48)
