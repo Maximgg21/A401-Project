@@ -2,5 +2,20 @@
 
 [ext_resource type="Script" uid="uid://c8hc26uk5dh0d" path="res://scenes/ui/compendium.gd" id="1_cyejy"]
 
-[node name="Compendium" type="Node2D" unique_id=869016570]
+[node name="Compendium" type="Control" unique_id=864849391]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_cyejy")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1620403505]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0015201258, 0.006329683, 0.14932105, 1)

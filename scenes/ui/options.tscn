@@ -21,6 +21,7 @@ grow_vertical = 2
 color = Color(0.006638326, 0.10976923, 0.0050044092, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1069121931]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -48,6 +49,8 @@ text = "Fullscreen (WIP)"
 
 [node name="FullscreenToggle" type="CheckButton" parent="VBoxContainer/Fullscreen" unique_id=1503467656]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="MasterVolume" type="HBoxContainer" parent="VBoxContainer" unique_id=91352240]
 layout_mode = 2
@@ -57,7 +60,10 @@ layout_mode = 2
 text = "Master Volume (WIP)"
 
 [node name="MasterSlider" type="HSlider" parent="VBoxContainer/MasterVolume" unique_id=1200398948]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+size_flags_vertical = 4
+value = 100.0
 
 [node name="BackButton" type="Button" parent="VBoxContainer" unique_id=32103763]
 modulate = Color(4.768765, 4.768765, 4.768765, 1)
