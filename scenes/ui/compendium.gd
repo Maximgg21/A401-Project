@@ -1,6 +1,6 @@
 extends Control
 
-const MAIN_MENU_PATH := "res://main_menu.tscn"
+const MAIN_MENU_PATH := "res://scenes/ui/main_menu.tscn"
 const ICON_SIZE := Vector2(64, 64)
 const GRID_COLUMNS := 5
 
