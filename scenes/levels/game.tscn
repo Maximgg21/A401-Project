@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://02ss8rul2ra5"]
 
 [ext_resource type="Script" uid="uid://yibetx72vt5o" path="res://scenes/levels/game.gd" id="1_lnu2h"]
-[ext_resource type="TileSet" uid="uid://rym8sugighb6" path="res://tilesets/dungeon.tres" id="2_eqihu"]
+[ext_resource type="TileSet" uid="uid://rym8sugighb6" path="res://data/tilesets/dungeon.tres" id="2_eqihu"]
 [ext_resource type="PackedScene" uid="uid://g3k7v68prbh3" path="res://entities/objects/large_bench.tscn" id="3_61jgc"]
 [ext_resource type="PackedScene" uid="uid://dchh2j4drjuvp" path="res://entities/objects/prison_bars.tscn" id="4_a1osm"]
 [ext_resource type="PackedScene" uid="uid://dogku6ym3gdjy" path="res://entities/player/player.tscn" id="4_riktp"]
