@@ -1,0 +1,139 @@
+[gd_scene format=3 uid="uid://3eo733mf31xa"]
+
+[ext_resource type="Script" uid="uid://br5is8k78hhjp" path="res://scenes/cards/card.gd" id="1_jl6rh"]
+[ext_resource type="Texture2D" uid="uid://wtkxhrbdn0du" path="res://assets/art/mobs/test_slime/slime.jpeg" id="2_0qqw3"]
+[ext_resource type="Resource" uid="uid://ddug85frxut1o" path="res://data/cards/strike.tres" id="2_jl6rh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_73nwn"]
+bg_color = Color(0.54509807, 0.22745098, 0.22745098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gbo1g"]
+bg_color = Color(0.8509804, 0.7882353, 0.6392157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1q37b"]
+bg_color = Color(0.11764706, 0.11764706, 0.14117648, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4tkg3"]
+bg_color = Color(0.16862746, 0.16862746, 0.2, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jl6rh"]
+bg_color = Color(0.54509807, 0.22745098, 0.22745098, 1)
+
+[node name="Card" type="Control" unique_id=56921068]
+custom_minimum_size = Vector2(220, 300)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 220.0
+offset_bottom = 300.0
+pivot_offset = Vector2(110, 150)
+script = ExtResource("1_jl6rh")
+data = ExtResource("2_jl6rh")
+
+[node name="Body" type="Panel" parent="." unique_id=1220088894]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 220.0
+offset_bottom = 300.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_73nwn")
+
+[node name="Art" type="TextureRect" parent="." unique_id=47956586]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 36.0
+offset_right = 204.0
+offset_bottom = 156.0
+mouse_filter = 2
+texture = ExtResource("2_0qqw3")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="NameBanner" type="Panel" parent="." unique_id=1101104665]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 204.0
+offset_bottom = 36.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gbo1g")
+
+[node name="NameLabel" type="Label" parent="NameBanner" unique_id=1404959830]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.11764706, 0.101960786, 0.09019608, 1)
+text = "Card Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="DescriptionBox" type="Panel" parent="." unique_id=589580687]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 168.0
+offset_right = 204.0
+offset_bottom = 288.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1q37b")
+
+[node name="DescriptionLabel" type="Label" parent="DescriptionBox" unique_id=620370239]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Card Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CostOrb" type="Panel" parent="." unique_id=274070914]
+layout_mode = 0
+offset_left = -9.0
+offset_top = -8.0
+offset_right = 10.0
+offset_bottom = 12.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4tkg3")
+
+[node name="CostLabel" type="Label" parent="CostOrb" unique_id=1432765064]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TypeBanner" type="Panel" parent="." unique_id=1092904384]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 156.0
+offset_right = 133.0
+offset_bottom = 168.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jl6rh")
+
+[node name="TypeLabel" type="Label" parent="TypeBanner" unique_id=1068448466]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.9411765, 0.9019608, 0.8235294, 1)
+theme_override_font_sizes/font_size = 12
+text = "Type"
+horizontal_alignment = 1
+vertical_alignment = 1
