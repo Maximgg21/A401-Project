@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://chrygbwyledck"]
+
+[ext_resource type="Texture2D" uid="uid://cxl6oeupv8w3t" path="res://assets/art/cards/defend.jpg" id="1_i5qgj"]
+[ext_resource type="Script" uid="uid://ow2y13dbd2nm" path="res://scripts/cards/effects/card_effect.gd" id="1_xp1y7"]
+[ext_resource type="Script" uid="uid://dc5aul7yuob7r" path="res://scripts/cards/card_data.gd" id="2_i5qgj"]
+[ext_resource type="Script" uid="uid://btof8ivg4xibo" path="res://scripts/cards/effects/block_effect.gd" id="3_3p0sg"]
+
+[sub_resource type="Resource" id="Resource_7rg7d"]
+script = ExtResource("3_3p0sg")
+metadata/_custom_type_script = "uid://btof8ivg4xibo"
+
+[resource]
+script = ExtResource("2_i5qgj")
+id = &"defend"
+name = "Defend"
+cost = 1
+type = 1
+art = ExtResource("1_i5qgj")
+effects = Array[ExtResource("1_xp1y7")]([SubResource("Resource_7rg7d")])
+metadata/_custom_type_script = "uid://dc5aul7yuob7r"
