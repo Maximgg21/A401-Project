@@ -245,7 +245,9 @@ func _new_grid() -> GridContainer:
 	return grid
 
 
-func _make_icon_button(display_number: int, entry_name: String, entry_icon: Texture2D, entry_info: String) -> Button:
+func _make_icon_button(
+	display_number: int, entry_name: String, entry_icon: Texture2D, entry_info: String
+) -> Button:
 	var button := Button.new()
 	button.custom_minimum_size = ICON_SIZE
 	button.add_theme_constant_override("icon_max_width", int(ICON_SIZE.x))

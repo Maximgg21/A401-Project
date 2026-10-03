@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="CardData" format=3 uid="uid://ddug85frxut1o"]
 
-[ext_resource type="Texture2D" uid="uid://dsi63q3h4o5sw" path="res://icon.svg" id="1_2u5xd"]
+[ext_resource type="Texture2D" uid="uid://cwfa306a6l74q" path="res://assets/art/cards/strike.webp" id="1_2u5xd"]
 [ext_resource type="Script" uid="uid://dc5aul7yuob7r" path="res://scripts/cards/card_data.gd" id="1_j7hgg"]
 [ext_resource type="Script" uid="uid://ow2y13dbd2nm" path="res://scripts/cards/effects/card_effect.gd" id="1_rfa6m"]
 [ext_resource type="Script" uid="uid://cw12sgysghj0y" path="res://scripts/cards/effects/damage_effect.gd" id="3_3gp6i"]
@@ -11,7 +11,7 @@ metadata/_custom_type_script = "uid://cw12sgysghj0y"
 
 [resource]
 script = ExtResource("1_j7hgg")
-id = &"1"
+id = &"strike"
 name = "Strike"
 cost = 1
 art = ExtResource("1_2u5xd")
