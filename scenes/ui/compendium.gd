@@ -4,7 +4,13 @@ const MAIN_MENU_PATH := "res://scenes/ui/main_menu.tscn"
 const ICON_SIZE := Vector2(64, 64)
 const GRID_COLUMNS := 5
 
-# Data Entry Portion
+# The Cards tab is different from the other tabs. It pulls cards from data/cards
+const CARDS_DATA_PATH := "res://data/cards"
+const CARD_SCENE := preload("res://scenes/cards/card.tscn")
+const CARD_MIN_SIZE := Vector2(160, 220)
+const CARD_GRID_COLUMNS := 4
+
+# Manual Data Entry Portion
 
 # --- Characters ---
 var character_1_name := "Alex"
@@ -229,6 +235,10 @@ func _build_layout() -> void:
 	upgrades_tab.name = "Upgrades"
 	tabs.add_child(upgrades_tab)
 
+	var cards_tab := _build_cards_tab()
+	cards_tab.name = "Cards"
+	tabs.add_child(cards_tab)
+
 	var enemies_tab := _build_enemies_tab()
 	enemies_tab.name = "Enemies"
 	tabs.add_child(enemies_tab)
@@ -236,11 +246,11 @@ func _build_layout() -> void:
 	_build_detail_popup()
 
 
-func _new_grid() -> GridContainer:
+func _new_grid(columns: int = GRID_COLUMNS, h_separation: int = 10, v_separation: int = 10) -> GridContainer:
 	var grid := GridContainer.new()
-	grid.columns = GRID_COLUMNS
-	grid.add_theme_constant_override("h_separation", 10)
-	grid.add_theme_constant_override("v_separation", 10)
+	grid.columns = columns
+	grid.add_theme_constant_override("h_separation", h_separation)
+	grid.add_theme_constant_override("v_separation", v_separation)
 	grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	return grid
 
@@ -299,6 +309,41 @@ func _build_upgrades_tab() -> Control:
 	grid.add_child(_make_icon_button(20, upgrade_20_name, upgrade_20_icon, upgrade_20_info))
 
 	scroll.add_child(grid)
+	return scroll
+
+
+func _build_cards_tab() -> Control:
+	var scroll := ScrollContainer.new()
+
+	var margin := MarginContainer.new()
+	margin.add_theme_constant_override("margin_left", 16)
+	margin.add_theme_constant_override("margin_top", 16)
+	margin.add_theme_constant_override("margin_right", 16)
+	margin.add_theme_constant_override("margin_bottom", 16)
+	scroll.add_child(margin)
+
+	var grid := _new_grid(CARD_GRID_COLUMNS, 24, 24)
+	margin.add_child(grid)
+
+	var dir := DirAccess.open(CARDS_DATA_PATH)
+	if dir:
+		dir.list_dir_begin()
+		var file_name := dir.get_next()
+		while file_name != "":
+			if file_name.ends_with(".tres"):
+				var card_data := load(CARDS_DATA_PATH + "/" + file_name) as CardData
+				if card_data:
+					var card_instance: CardView = CARD_SCENE.instantiate()
+					card_instance.custom_minimum_size = CARD_MIN_SIZE
+					card_instance.data = card_data
+					grid.add_child(card_instance)
+				else:
+					push_warning("File did not load as CardData: %s" % file_name)
+			file_name = dir.get_next()
+		dir.list_dir_end()
+	else:
+		push_warning("Could not open folder: %s" % CARDS_DATA_PATH)
+
 	return scroll
 
 
@@ -371,4 +416,4 @@ func _on_icon_pressed(entry_name: String, entry_icon: Texture2D, entry_info: Str
 
 
 func _on_back_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
+	get_tree().change_scene_to_file(MAIN_MENU_PATH)
