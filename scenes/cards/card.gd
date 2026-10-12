@@ -1,6 +1,8 @@
 class_name CardView
 extends Control
 
+signal clicked
+
 const RARITY_COLORS := {
 	CardData.CardRarity.COMMON: Color("6f776fff"),
 	CardData.CardRarity.UNCOMMON: Color("5967a2ff"),
@@ -27,9 +29,17 @@ func _ready() -> void:
 	_refresh()
 
 
-func _refresh():
+func _refresh() -> void:
 	_name_label.text = data.name
 	_description_label.text = data.get_description()
 	_cost_label.text = str(data.cost)
 	_type_label.text = CardData.CardType.find_key(data.type).capitalize()
 	_art.texture = data.art
+
+
+func _gui_input(event: InputEvent) -> void:
+	if (
+		event is InputEventMouseButton
+		and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed()
+	):
+		clicked.emit()

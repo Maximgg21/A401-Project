@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bw2vm8l7uy0gw"]
+
+[ext_resource type="Script" uid="uid://gq8tmgr7m4vt" path="res://scenes/cards/hand.gd" id="1_62ged"]
+
+[node name="Hand" type="HBoxContainer" unique_id=305617950]
+script = ExtResource("1_62ged")

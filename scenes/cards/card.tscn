@@ -41,6 +41,7 @@ corner_radius_bottom_left = 25
 
 [node name="Card" type="Control" unique_id=56921068]
 texture_filter = 2
+custom_minimum_size = Vector2(220, 300)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 220.0
@@ -62,6 +63,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_73nwn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Body" unique_id=751810493]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 0
 
 [node name="NameLabel" type="Label" parent="Body/VBoxContainer" unique_id=1404959830]

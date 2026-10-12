@@ -7,6 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_ft0kp"]
 script = ExtResource("3_3gp6i")
+upgraded = 9
 metadata/_custom_type_script = "uid://cw12sgysghj0y"
 
 [resource]

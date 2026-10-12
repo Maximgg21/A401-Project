@@ -1,8 +1,19 @@
 class_name CardData
 extends Resource
 
-enum CardType { ATTACK, SKILL, MOVE, POWER }
-enum CardRarity { COMMON, UNCOMMON, RARE, LEGENDARY, MYTHIC }
+enum CardType {
+	ATTACK,
+	SKILL,
+	MOVE,
+	POWER,
+}
+enum CardRarity {
+	COMMON,
+	UNCOMMON,
+	RARE,
+	LEGENDARY,
+	MYTHIC,
+}
 
 @export var id: StringName
 @export var name: String
@@ -10,6 +21,7 @@ enum CardRarity { COMMON, UNCOMMON, RARE, LEGENDARY, MYTHIC }
 @export var type: CardType
 @export var rarity: CardRarity
 @export var art: Texture2D
+@export var upgraded: bool = false
 
 @export_group("Effects")
 @export var effects: Array[CardEffect] = []
