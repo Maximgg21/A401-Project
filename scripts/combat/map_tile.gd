@@ -4,7 +4,7 @@ enum Traversability {
 	NONE,
 	GROUND,
 	WATER,
-	FLYING
+	FLYING,
 }
 var terrain: int #this can be turned into an enum
 var movement_cost: int

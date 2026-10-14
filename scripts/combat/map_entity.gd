@@ -4,17 +4,17 @@ extends Resource
 enum ControllerType {
 	NONE,
 	PLAYER,
-	AI
+	AI,
 }
 enum Movement {
 	NONE,
 	GROUND,
 	WATER,
-	FLYING
+	FLYING,
 }
 var position: Vector2i
 var hp: int
 var controlID: ControllerType #this represents what controls this entity, 0 = no control, 1 = player control, 2= ai control
 var ai_type: int
 var initiative: int
-var movement_type: Movement 
+var movement_type: Movement
