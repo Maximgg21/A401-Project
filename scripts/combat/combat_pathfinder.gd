@@ -3,6 +3,12 @@ extends RefCounted
 
 const DIRECTIONS: Array[Vector2i] = [Vector2i.UP, Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT]
 
+enum Traversability {
+	NONE,
+	GROUND,
+	WATER,
+	FLYING,
+}
 
 func _get_cheapest(frontier: Array[Vector2i], costs: Dictionary[Vector2i, int]) -> Vector2i:
 	var cheapest := frontier[0]
@@ -14,11 +20,11 @@ func _get_cheapest(frontier: Array[Vector2i], costs: Dictionary[Vector2i, int]) 
 	return cheapest
 
 
-func _can_traverse(entity: Entity, tile: MapTile) -> bool:
-	if (tile.traversability == 0):
+func _can_traverse(entity: Combatant, tile: MapTile) -> bool:
+	if (tile.traversability == Traversability.NONE):
 		return false
-	elif (tile.traversability == 3):
-		if entity.movement_type == 3:
+	elif (tile.traversability == Traversability.FLYING):
+		if entity.movement_type == Traversability.FLYING:
 			return true
 		else:
 			return false
@@ -32,7 +38,7 @@ func find_reachable_tiles(
 	map: CombatMap,
 	start: Vector2i,
 	max_movement: int,
-	entity: Entity,
+	entity: Combatant,
 ) -> Dictionary:
 	var frontier: Array[Vector2i] = [start]
 
@@ -57,7 +63,8 @@ func find_reachable_tiles(
 			if not _can_traverse(entity, tile):
 				continue
 
-			var new_cost: int = costs[current] + tile.movement_cost
+			var movement_cost := map.get_movement_cost(entity, next)
+			var new_cost: int = costs[current] + movement_cost
 
 			if new_cost > max_movement:
 				continue
