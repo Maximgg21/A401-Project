@@ -16,4 +16,4 @@ extends Node
 #step 3. end combat
 #		when all enemies or pc (player character) is dead, end combat
 #		if pc dies, go to fail state
-#		if all enemies die, exit combat and return to regular overworld travel and such
+#		if all enemies die, exit combat and go to map
