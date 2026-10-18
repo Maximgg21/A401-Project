@@ -6,7 +6,7 @@ const GRID_COLUMNS := 5
 
 # The Cards tab is different from the other tabs. It pulls cards from data/cards
 const CARDS_DATA_PATH := "res://data/cards"
-const CARD_SCENE := preload("res://scenes/cards/card.tscn")
+const CARD_SCENE := preload("res://scenes/cards/card_view.tscn")
 const CARD_MIN_SIZE := Vector2(160, 220)
 const CARD_GRID_COLUMNS := 4
 
