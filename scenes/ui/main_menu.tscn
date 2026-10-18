@@ -2,80 +2,116 @@
 
 [ext_resource type="Script" uid="uid://bpprfovqjclkr" path="res://scenes/ui/main_menu.gd" id="1_ekxnf"]
 [ext_resource type="Texture2D" uid="uid://b81w58qu15vft" path="res://assets/art/ui/title_card.png" id="2_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://tedkmt36dmp5" path="res://assets/art/ui/mainmenubg.png" id="2_uhagc"]
+[ext_resource type="Texture2D" uid="uid://d1chsrrxrfk2g" path="res://assets/art/ui/playbut.png" id="4_btxxm"]
+[ext_resource type="Texture2D" uid="uid://dxunklv1aykhd" path="res://assets/art/ui/playbutpressed.png" id="5_wb0q5"]
+[ext_resource type="Texture2D" uid="uid://eyl68v5ua2nk" path="res://assets/art/ui/achievebut.png" id="6_q85j6"]
+[ext_resource type="Texture2D" uid="uid://bq6hfwkcovyp3" path="res://assets/art/ui/achievebutpressed.png" id="7_8ekit"]
+[ext_resource type="Texture2D" uid="uid://ckbcwdwl6stq3" path="res://assets/art/ui/compbut.png" id="8_n4uci"]
+[ext_resource type="Texture2D" uid="uid://dxgv7uhj1uxpk" path="res://assets/art/ui/compbutpressed.png" id="9_877pj"]
+[ext_resource type="Texture2D" uid="uid://utg4jj3n1y4j" path="res://assets/art/ui/optbut.png" id="10_ayp64"]
+[ext_resource type="Texture2D" uid="uid://be5b40qlvlqli" path="res://assets/art/ui/optbutpressed.png" id="11_y2j7i"]
+[ext_resource type="Texture2D" uid="uid://tvdnpgx6h64h" path="res://assets/art/ui/exitbut.png" id="12_y1h5l"]
+[ext_resource type="Texture2D" uid="uid://chomch0aope6d" path="res://assets/art/ui/exitbutpressed.png" id="13_pw24t"]
 
 [node name="Main Menu" type="Control" unique_id=1011741582]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 575.0
-offset_top = 322.0
-offset_right = 575.0
-offset_bottom = 322.0
-script = ExtResource("1_ekxnf")
-
-[node name="MainMenuBG" type="ColorRect" parent="." unique_id=557919610]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -574.0
-offset_top = -323.0
-offset_right = 574.0
-offset_bottom = 323.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.24027917, 0.477056, 0.7722583, 1)
-
-[node name="Title" type="TextureRect" parent="." unique_id=1049051159]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -241.0
 grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("2_bqqt6")
+grow_vertical = 2
+script = ExtResource("1_ekxnf")
 
-[node name="Button_manager" type="Control" parent="." unique_id=191148302]
+[node name="MainMenuBG" type="TextureRect" parent="." unique_id=1652688801]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-grow_vertical = 0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_uhagc")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Button_manager" unique_id=1329821863]
+[node name="Title" type="TextureRect" parent="." unique_id=1049051159]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -214.0
-offset_right = 214.0
-offset_bottom = 212.0
+offset_left = -512.0
+offset_top = 50.0
+offset_right = 512.0
+offset_bottom = 291.0
 grow_horizontal = 2
+texture = ExtResource("2_bqqt6")
 
-[node name="Start" type="Button" parent="Button_manager/VBoxContainer" unique_id=909950825]
-custom_minimum_size = Vector2(0, 50)
+[node name="ButtonBox" type="VBoxContainer" parent="." unique_id=1329821863]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -214.0
+offset_top = -360.0
+offset_right = 214.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Start" type="TextureButton" parent="ButtonBox" unique_id=1727585562]
+custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
-text = "Start"
+texture_normal = ExtResource("4_btxxm")
+texture_pressed = ExtResource("5_wb0q5")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="Compendium" type="Button" parent="Button_manager/VBoxContainer" unique_id=365955044]
-custom_minimum_size = Vector2(0, 50)
+[node name="Achievements" type="TextureButton" parent="ButtonBox" unique_id=485650636]
+custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
-text = "Compendium"
+texture_normal = ExtResource("6_q85j6")
+texture_pressed = ExtResource("7_8ekit")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="Options" type="Button" parent="Button_manager/VBoxContainer" unique_id=1594788515]
-custom_minimum_size = Vector2(0, 50)
+[node name="Compendium" type="TextureButton" parent="ButtonBox" unique_id=1876955776]
+custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
-text = "Options"
+texture_normal = ExtResource("8_n4uci")
+texture_pressed = ExtResource("9_877pj")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="Quit" type="Button" parent="Button_manager/VBoxContainer" unique_id=623975502]
-custom_minimum_size = Vector2(0, 50)
+[node name="Options" type="TextureButton" parent="ButtonBox" unique_id=120731200]
+custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
-text = "Quit"
+texture_normal = ExtResource("10_ayp64")
+texture_pressed = ExtResource("11_y2j7i")
+ignore_texture_size = true
+stretch_mode = 5
 
-[connection signal="pressed" from="Button_manager/VBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Button_manager/VBoxContainer/Compendium" to="." method="_on_compendium_pressed"]
-[connection signal="pressed" from="Button_manager/VBoxContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="Button_manager/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[node name="Quit" type="TextureButton" parent="ButtonBox" unique_id=676222295]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+texture_normal = ExtResource("12_y1h5l")
+texture_pressed = ExtResource("13_pw24t")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Hidden Slime Button" type="TextureButton" parent="." unique_id=1560522810]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -200.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[connection signal="pressed" from="ButtonBox/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="ButtonBox/Achievements" to="." method="_on_achievements_pressed"]
+[connection signal="pressed" from="ButtonBox/Compendium" to="." method="_on_compendium_pressed"]
+[connection signal="pressed" from="ButtonBox/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="ButtonBox/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Hidden Slime Button" to="." method="_on_hidden_slime_button_pressed"]
