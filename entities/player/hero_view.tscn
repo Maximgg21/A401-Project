@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dogku6ym3gdjy"]
 
-[ext_resource type="Script" uid="uid://bfhjklewgyk7i" path="res://entities/player/player.gd" id="1_qiwj3"]
+[ext_resource type="Script" uid="uid://bfhjklewgyk7i" path="res://entities/player/hero_view.gd" id="1_qiwj3"]
 [ext_resource type="Texture2D" uid="uid://eey4n1ywufr6" path="res://assets/art/characters/body_a/animations/idle_base/idle_down_sheet.png" id="2_26q78"]
 [ext_resource type="Texture2D" uid="uid://bp51m36b0nmxq" path="res://assets/art/characters/body_a/animations/idle_base/idle_side_sheet.png" id="3_bectd"]
 [ext_resource type="Texture2D" uid="uid://bvnw1vlerc7hp" path="res://assets/art/characters/body_a/animations/idle_base/idle_up_sheet.png" id="4_wvtmh"]
@@ -254,7 +254,8 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Player" type="CharacterBody2D" unique_id=1936538729]
+[node name="Hero" type="CharacterBody2D" unique_id=1936538729]
+visible = false
 script = ExtResource("1_qiwj3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1145370361]

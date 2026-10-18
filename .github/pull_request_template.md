@@ -8,7 +8,7 @@
 
 ## How to test
 
-1. <!-- e.g. Open scenes/cards/card.tscn, press F6 -->
+1. <!-- e.g. Open scenes/cards/card_view.tscn, press F6 -->
 
 ## Checklist
 

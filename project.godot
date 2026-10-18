@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+RunState="*uid://c6pikp7gxn2ck"
 Achievements="*uid://db4kvslvpwwmw"
 
 [editor_plugins]

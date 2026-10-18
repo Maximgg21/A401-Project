@@ -4,7 +4,8 @@
 [ext_resource type="TileSet" uid="uid://rym8sugighb6" path="res://data/tilesets/dungeon.tres" id="2_eqihu"]
 [ext_resource type="PackedScene" uid="uid://g3k7v68prbh3" path="res://entities/objects/large_bench.tscn" id="3_61jgc"]
 [ext_resource type="PackedScene" uid="uid://dchh2j4drjuvp" path="res://entities/objects/prison_bars.tscn" id="4_a1osm"]
-[ext_resource type="PackedScene" uid="uid://dogku6ym3gdjy" path="res://entities/player/player.tscn" id="4_riktp"]
+[ext_resource type="PackedScene" uid="uid://dogku6ym3gdjy" path="res://entities/player/hero_view.tscn" id="4_riktp"]
+[ext_resource type="PackedScene" uid="uid://cp6p563x82u7y" path="res://scenes/combat/combat_hud.tscn" id="6_limtx"]
 
 [node name="Node2D" type="Node2D" unique_id=433223353]
 y_sort_enabled = true
@@ -51,3 +52,5 @@ position = Vector2(-11, 84)
 
 [node name="Player" parent="." unique_id=1936538729 instance=ExtResource("4_riktp")]
 position = Vector2(-20, 150)
+
+[node name="CombatHud" parent="." unique_id=1549386585 instance=ExtResource("6_limtx")]
