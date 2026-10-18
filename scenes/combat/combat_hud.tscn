@@ -1,13 +1,22 @@
 [gd_scene format=3 uid="uid://cp6p563x82u7y"]
 
 [ext_resource type="Script" uid="uid://cvoan70wpwneq" path="res://scenes/combat/combat_hud.gd" id="1_m5tpd"]
-[ext_resource type="PackedScene" uid="uid://bw2vm8l7uy0gw" path="res://scenes/cards/hand.tscn" id="2_go41d"]
+[ext_resource type="PackedScene" uid="uid://bw2vm8l7uy0gw" path="res://scenes/cards/hand_view.tscn" id="2_go41d"]
 
 [node name="CombatHud" type="Control" unique_id=1549386585]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_m5tpd")
 
-[node name="Hand" parent="." unique_id=305617950 instance=ExtResource("2_go41d")]
+[node name="HandView" parent="." unique_id=305617950 instance=ExtResource("2_go41d")]
 unique_name_in_owner = true
 layout_mode = 0
+
+[node name="EndTurnButton" type="Button" parent="." unique_id=480141793]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "End Turn"
+
+[connection signal="pressed" from="EndTurnButton" to="." method="_end_turn"]

@@ -1,4 +1,4 @@
-class_name CardInstance
+class_name Card
 extends RefCounted
 
 var data: CardData

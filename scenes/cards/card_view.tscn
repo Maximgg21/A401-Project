@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://3eo733mf31xa"]
 
-[ext_resource type="Script" uid="uid://br5is8k78hhjp" path="res://scenes/cards/card.gd" id="1_jl6rh"]
+[ext_resource type="Script" uid="uid://br5is8k78hhjp" path="res://scenes/cards/card_view.gd" id="1_jl6rh"]
 [ext_resource type="Texture2D" uid="uid://wtkxhrbdn0du" path="res://assets/art/mobs/test_slime/slime.jpeg" id="2_0qqw3"]
 [ext_resource type="Resource" uid="uid://ddug85frxut1o" path="res://data/cards/strike.tres" id="2_jl6rh"]
 [ext_resource type="FontFile" uid="uid://cobvc080r28oo" path="res://assets/fonts/Cinzel/Cinzel-Bold.ttf" id="3_1q37b"]

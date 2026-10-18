@@ -1,11 +1,11 @@
 class_name CombatDeck
 extends RefCounted
 
-signal hand_changed(hand: Array[CardInstance])
+signal hand_changed(hand: Array[Card])
 
-var draw_pile: Array[CardInstance]
-var hand: Array[CardInstance]
-var discard_pile: Array[CardInstance]
+var draw_pile: Array[Card]
+var hand: Array[Card]
+var discard_pile: Array[Card]
 
 var rng := RunState.rng
 
@@ -16,7 +16,7 @@ func _init() -> void:
 	_shuffle()
 
 
-func draw_cards(amount) -> void:
+func draw(amount: int) -> void:
 	if draw_pile.is_empty() and discard_pile.is_empty():
 		return
 	for i in amount:
@@ -29,7 +29,7 @@ func draw_cards(amount) -> void:
 	hand_changed.emit(hand)
 
 
-func discard_card(card: CardInstance) -> void:
+func discard_one(card: Card) -> void:
 	if card not in hand:
 		return
 	discard_pile.append(card)
@@ -49,7 +49,7 @@ func _shuffle() -> void:
 
 	var n := draw_pile.size()
 	for i in range(n - 1, 0, -1): # Fisher–Yates shuffle
-		var j := rng.randi_range(0, i)
+		var j: int = rng.randi_range(0, i)
 		var temp := draw_pile[j]
 		draw_pile[j] = draw_pile[i]
 		draw_pile[i] = temp

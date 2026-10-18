@@ -1,6 +1,13 @@
+class_name HeroView
 extends CharacterBody2D
 
 const SPEED := 90.0
+
+@export var data: HeroData:
+	set(value):
+		data = value
+		if is_node_ready():
+			_refresh()
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -24,3 +31,7 @@ func _animate(dir: Vector2) -> void:
 			facing = "down" if dir.y > 0 else "up"
 
 	sprite.play("%s_%s" % [state, facing])
+
+
+func _refresh() -> void:
+	pass

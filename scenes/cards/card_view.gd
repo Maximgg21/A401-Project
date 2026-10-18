@@ -4,6 +4,7 @@ extends Control
 signal clicked
 
 const RARITY_COLORS := {
+	# TODO: color the card by rarity
 	CardData.CardRarity.COMMON: Color("6f776fff"),
 	CardData.CardRarity.UNCOMMON: Color("5967a2ff"),
 	CardData.CardRarity.RARE: Color("407f40ff"),

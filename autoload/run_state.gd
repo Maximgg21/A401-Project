@@ -1,9 +1,10 @@
 extends Node
 
-const STARTER_DECK_DATA: DeckData = preload("res://data/decks/starter_deck.tres")
+const STARTER_HERO: HeroData = preload("res://data/heroes/starter_hero.tres")
 
 var rng := RandomNumberGenerator.new()
-var deck: Array[CardInstance]
+var deck: Array[Card]
+var hero: Hero
 
 
 func _ready() -> void:
@@ -16,6 +17,8 @@ func start_run(custom_seed: int = -1) -> void:
 	else:
 		rng.seed = randi()
 
+	hero = Hero.new(STARTER_HERO)
+
 	deck.clear()
-	for data in STARTER_DECK_DATA.cards:
-		deck.append(CardInstance.new(data))
+	for card_data in hero.data.starting_deck.cards:
+		deck.append(Card.new(card_data))
