@@ -1,18 +1,11 @@
 class_name Hero
-extends RefCounted
+extends Combatant
 
 signal energy_changed
-signal health_changed
-signal movement_changed
 
 var data: HeroData
-var max_health: int
-var current_health: int
 var max_energy: int
 var current_energy: int
-var speed: int # How many movement do I gain every turn
-var movement: int # How many tiles can I move
-
 
 func _init(hero_data: HeroData) -> void:
 	data = hero_data
@@ -22,15 +15,14 @@ func _init(hero_data: HeroData) -> void:
 	current_energy = max_energy
 	speed = data.base_speed
 	movement = speed
+	movement_type = Combatant.Movement.GROUND #if you want the hero to be able to fly/be a fish, set this using data instead
+	team = Combatant.Team.ALLY
 
 
 func start_turn() -> void:
+	super()
 	current_energy = max_energy
-	movement = speed
-
 	energy_changed.emit()
-	movement_changed.emit()
-
 
 func spend_energy(amount: int) -> bool:
 	if current_energy < amount:

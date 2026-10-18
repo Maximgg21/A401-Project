@@ -1,11 +1,6 @@
 class_name Combatant
 extends MapEntity
 #this represents enemies and allies
-enum ControllerType {
-	NONE,
-	PLAYER,
-	AI_SIMPLE,
-}
 enum Movement {
 	NONE,
 	GROUND,
@@ -17,7 +12,15 @@ enum Team {
 	ENEMY,
 	NEUTRAL
 }
-var control_id: ControllerType #this represents what controls this entity, 0 = no control, 1 = player control, 2= ai control
+
+signal movement_changed
+
+var speed: int # How many movement do I gain every turn
+var movement: int # How many tiles can I move
 var team: Team
 var movement_type: Movement
-var movement_points: int
+
+func start_turn() -> void:
+	movement = speed
+	movement_changed.emit()
+	
