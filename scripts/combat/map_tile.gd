@@ -1,5 +1,7 @@
 class_name MapTile
-extends Resource #TODO: seperate this into tile types and instances
+extends Resource 
+@export var type: MapTileType
+
 enum Terrain { 
 	STONE,
 	WOOD,
@@ -8,7 +10,7 @@ enum Terrain {
 
 enum Feature {
 	NONE,
-	WALL, #wall that does not block los = bars
+	WALL,
 	DOOR,
 	PIT,
 }

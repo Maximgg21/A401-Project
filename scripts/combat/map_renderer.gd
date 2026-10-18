@@ -1,3 +1,3 @@
 class_name MapRenderer
-extends Node
+extends TileMapLayer
 #this will turn the combat map into a tilemap

@@ -3,13 +3,6 @@ extends RefCounted
 
 const DIRECTIONS: Array[Vector2i] = [Vector2i.UP, Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT]
 
-enum Traversability {
-	NONE,
-	GROUND,
-	WATER,
-	FLYING,
-}
-
 func _get_cheapest(frontier: Array[Vector2i], costs: Dictionary[Vector2i, int]) -> Vector2i:
 	var cheapest := frontier[0]
 
@@ -19,12 +12,11 @@ func _get_cheapest(frontier: Array[Vector2i], costs: Dictionary[Vector2i, int]) 
 
 	return cheapest
 
-
 func _can_traverse(entity: Combatant, tile: MapTile) -> bool:
-	if (tile.traversability == Traversability.NONE):
+	if (tile.traversability == MapTile.Traversability.NONE):
 		return false
-	elif (tile.traversability == Traversability.FLYING):
-		if entity.movement_type == Traversability.FLYING:
+	elif (tile.traversability == MapTile.Traversability.FLYING):
+		if entity.movement_type == MapTile.Traversability.FLYING:
 			return true
 		else:
 			return false

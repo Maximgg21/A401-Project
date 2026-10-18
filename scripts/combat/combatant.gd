@@ -4,7 +4,7 @@ extends MapEntity
 enum ControllerType {
 	NONE,
 	PLAYER,
-	AI,
+	AI_SIMPLE,
 }
 enum Movement {
 	NONE,
