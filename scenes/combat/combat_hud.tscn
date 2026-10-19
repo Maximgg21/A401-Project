@@ -1,22 +1,136 @@
 [gd_scene format=3 uid="uid://cp6p563x82u7y"]
 
 [ext_resource type="Script" uid="uid://cvoan70wpwneq" path="res://scenes/combat/combat_hud.gd" id="1_m5tpd"]
+[ext_resource type="Texture2D" uid="uid://c2xbx7q3d3g2e" path="res://assets/art/ui/icons/card-draw.svg" id="2_5r38c"]
 [ext_resource type="PackedScene" uid="uid://bw2vm8l7uy0gw" path="res://scenes/cards/hand_view.tscn" id="2_go41d"]
+[ext_resource type="Texture2D" uid="uid://btfmastd2ahxp" path="res://assets/art/ui/icons/rolling-energy.svg" id="3_okdr1"]
+[ext_resource type="FontFile" uid="uid://cobvc080r28oo" path="res://assets/fonts/Cinzel/Cinzel-Bold.ttf" id="3_xxsmo"]
+[ext_resource type="Texture2D" uid="uid://65dvx7wqe2gc" path="res://assets/art/ui/icons/card-burn.svg" id="5_xxsmo"]
 
 [node name="CombatHud" type="Control" unique_id=1549386585]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_m5tpd")
+
+[node name="DrawPileIcon" type="TextureRect" parent="." unique_id=1834956159]
+self_modulate = Color(0.7647059, 0.7019608, 0.5647059, 1)
+texture_filter = 2
+custom_maximum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -62.0
+offset_right = 62.0
+offset_bottom = -12.0
+grow_vertical = 0
+texture = ExtResource("2_5r38c")
+
+[node name="DrawPileLabel" type="Label" parent="DrawPileIcon" unique_id=1362601064]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_xxsmo")
+text = "10"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="EnergyPileIcon" type="TextureRect" parent="." unique_id=2077493642]
+self_modulate = Color(0.827451, 0.11372549, 0.11372549, 1)
+texture_filter = 2
+custom_maximum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -144.0
+offset_right = 80.0
+offset_bottom = -94.0
+grow_vertical = 0
+texture = ExtResource("3_okdr1")
+
+[node name="EnergyLabel" type="Label" parent="EnergyPileIcon" unique_id=571703949]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_xxsmo")
+text = "3/3"
+horizontal_alignment = 2
+vertical_alignment = 2
 
 [node name="HandView" parent="." unique_id=305617950 instance=ExtResource("2_go41d")]
 unique_name_in_owner = true
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+pivot_offset_ratio = Vector2(0.5, 1)
+alignment = 1
+
+[node name="DiscardPileIcon" type="TextureRect" parent="." unique_id=2076745051]
+self_modulate = Color(0.7647059, 0.7019608, 0.5647059, 1)
+texture_filter = 2
+custom_maximum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -62.0
+offset_top = -62.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("5_xxsmo")
+
+[node name="DiscardPileLabel" type="Label" parent="DiscardPileIcon" unique_id=1668055356]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_xxsmo")
+text = "0"
+vertical_alignment = 2
 
 [node name="EndTurnButton" type="Button" parent="." unique_id=480141793]
 unique_name_in_owner = true
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -124.0
+offset_top = -132.0
+offset_right = -46.0
+offset_bottom = -101.0
+grow_horizontal = 0
+grow_vertical = 0
+offset_transform_position_ratio = Vector2(1, 0.9)
 text = "End Turn"
 
 [connection signal="pressed" from="EndTurnButton" to="." method="_end_turn"]

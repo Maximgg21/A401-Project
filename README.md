@@ -30,3 +30,24 @@ Rules of thumb:
 4. Run `gdlint scenes scripts entities autoload` (install with `pip install "gdtoolkit==4.*"`).
 5. Push and open a pull request into `main`. Fill in the template, including the FR number.
 6. Merge after one teammate approves. Never commit directly to `main`.
+
+## Credits
+
+### Fonts
+
+Licensed under the [SIL Open Font License 1.1](https://openfontlicense.org); the full license is in each font's `OFL.txt`.
+
+| Font | Folder | Copyright |
+|---|---|---|
+| [Cinzel](https://github.com/NDISCOVER/Cinzel) | `assets/fonts/Cinzel/` | 2020 The Cinzel Project Authors |
+| [Crimson Text](https://github.com/googlefonts/Crimson) | `assets/fonts/Crimson_Text/` | 2010 The Crimson Text Project Authors |
+
+### Icons
+
+From [game-icons.net](https://game-icons.net), licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
+
+| File | Icon | Author |
+|---|---|---|
+| `assets/art/ui/icons/card-burn.svg` | Card burn | Delapouite |
+| `assets/art/ui/icons/card-draw.svg` | Card draw | Faithtoken |
+| `assets/art/ui/icons/rolling-energy.svg` | Rolling energy | Lorc |
