@@ -1,6 +1,7 @@
 class_name CombatDeck
 extends RefCounted
 
+signal piles_changed(draw_count: int, discard_count: int)
 signal hand_changed(hand: Array[Card])
 
 var draw_pile: Array[Card]
@@ -16,6 +17,11 @@ func _init() -> void:
 	_shuffle()
 
 
+func _emit_changes() -> void:
+	hand_changed.emit(hand)
+	piles_changed.emit(draw_pile.size(), discard_pile.size())
+
+
 func draw(amount: int) -> void:
 	if draw_pile.is_empty() and discard_pile.is_empty():
 		return
@@ -26,7 +32,7 @@ func draw(amount: int) -> void:
 			# Previous check confirmed there are still cards in the discard pile
 			_shuffle()
 		hand.push_back(draw_pile.pop_back())
-	hand_changed.emit(hand)
+	_emit_changes()
 
 
 func discard_one(card: Card) -> void:
@@ -34,13 +40,13 @@ func discard_one(card: Card) -> void:
 		return
 	discard_pile.append(card)
 	hand.erase(card)
-	hand_changed.emit(hand)
+	_emit_changes()
 
 
 func discard_all() -> void:
 	discard_pile.append_array(hand)
 	hand.clear()
-	hand_changed.emit(hand)
+	_emit_changes()
 
 
 func _shuffle() -> void:
@@ -53,3 +59,4 @@ func _shuffle() -> void:
 		var temp := draw_pile[j]
 		draw_pile[j] = draw_pile[i]
 		draw_pile[i] = temp
+	piles_changed.emit(draw_pile.size(), discard_pile.size())

@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 RunState="*uid://c6pikp7gxn2ck"
 Achievements="*uid://db4kvslvpwwmw"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg")
