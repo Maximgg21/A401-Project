@@ -1,3 +1,16 @@
 [gd_scene format=3 uid="uid://bah8saqm5o3h5"]
 
+[ext_resource type="Script" uid="uid://bxbrdagve8nfj" path="res://entities/map_nodes/basic_map_node.gd" id="1_20a57"]
+
+[sub_resource type="Gradient" id="Gradient_r1smq"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i3rbn"]
+gradient = SubResource("Gradient_r1smq")
+width = 16
+height = 16
+
 [node name="Node2D" type="Node2D" unique_id=961029263]
+script = ExtResource("1_20a57")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1977837170]
+texture = SubResource("GradientTexture2D_i3rbn")
