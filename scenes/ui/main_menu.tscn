@@ -6,13 +6,18 @@
 [ext_resource type="Texture2D" uid="uid://d1chsrrxrfk2g" path="res://assets/art/ui/playbut.png" id="4_btxxm"]
 [ext_resource type="Texture2D" uid="uid://dxunklv1aykhd" path="res://assets/art/ui/playbutpressed.png" id="5_wb0q5"]
 [ext_resource type="Texture2D" uid="uid://eyl68v5ua2nk" path="res://assets/art/ui/achievebut.png" id="6_q85j6"]
+[ext_resource type="Texture2D" uid="uid://bys7noy6ukjb2" path="res://assets/art/ui/playbuthover.png" id="6_y1h5l"]
 [ext_resource type="Texture2D" uid="uid://bq6hfwkcovyp3" path="res://assets/art/ui/achievebutpressed.png" id="7_8ekit"]
 [ext_resource type="Texture2D" uid="uid://ckbcwdwl6stq3" path="res://assets/art/ui/compbut.png" id="8_n4uci"]
 [ext_resource type="Texture2D" uid="uid://dxgv7uhj1uxpk" path="res://assets/art/ui/compbutpressed.png" id="9_877pj"]
+[ext_resource type="Texture2D" uid="uid://xn8ognkweh3n" path="res://assets/art/ui/achievebuthover.png" id="9_pw24t"]
 [ext_resource type="Texture2D" uid="uid://utg4jj3n1y4j" path="res://assets/art/ui/optbut.png" id="10_ayp64"]
 [ext_resource type="Texture2D" uid="uid://be5b40qlvlqli" path="res://assets/art/ui/optbutpressed.png" id="11_y2j7i"]
+[ext_resource type="Texture2D" uid="uid://bgly83vhe874x" path="res://assets/art/ui/compbuthover.png" id="12_5dct7"]
 [ext_resource type="Texture2D" uid="uid://tvdnpgx6h64h" path="res://assets/art/ui/exitbut.png" id="12_y1h5l"]
 [ext_resource type="Texture2D" uid="uid://chomch0aope6d" path="res://assets/art/ui/exitbutpressed.png" id="13_pw24t"]
+[ext_resource type="Texture2D" uid="uid://bisky2hrljtyx" path="res://assets/art/ui/optbuthover.png" id="15_qilvv"]
+[ext_resource type="Texture2D" uid="uid://bhhf8bg0eiubj" path="res://assets/art/ui/exitbuthover.png" id="18_jbte4"]
 
 [node name="Main Menu" type="Control" unique_id=1011741582]
 layout_mode = 3
@@ -62,6 +67,7 @@ custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 texture_normal = ExtResource("4_btxxm")
 texture_pressed = ExtResource("5_wb0q5")
+texture_hover = ExtResource("6_y1h5l")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -70,6 +76,7 @@ custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 texture_normal = ExtResource("6_q85j6")
 texture_pressed = ExtResource("7_8ekit")
+texture_hover = ExtResource("9_pw24t")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -78,6 +85,7 @@ custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 texture_normal = ExtResource("8_n4uci")
 texture_pressed = ExtResource("9_877pj")
+texture_hover = ExtResource("12_5dct7")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -86,6 +94,7 @@ custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 texture_normal = ExtResource("10_ayp64")
 texture_pressed = ExtResource("11_y2j7i")
+texture_hover = ExtResource("15_qilvv")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -94,6 +103,7 @@ custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 texture_normal = ExtResource("12_y1h5l")
 texture_pressed = ExtResource("13_pw24t")
+texture_hover = ExtResource("18_jbte4")
 ignore_texture_size = true
 stretch_mode = 5
 

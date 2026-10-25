@@ -1,15 +1,4 @@
 extends Node
-## Shakes the 2D view for a moment. Call it from anywhere:
-##     ScreenShake.shake()  # default hit
-##     ScreenShake.shake(14.0, 0.5)  # big hit: strength in pixels, duration in seconds
-##
-## Does nothing when the player has turned Screen Shake off in Options.
-##
-## It nudges the viewport's canvas transform, which moves everything on the default
-## canvas layer (the game world and the combat HUD). Nodes on their own CanvasLayer,
-## like the achievement popup and the brightness overlay, stay put.
-## The project has no Camera2D yet. If one is added, it overwrites the canvas
-## transform, so change _set_offset() to move the camera's offset instead.
 
 const DEFAULT_STRENGTH := 8.0
 const DEFAULT_DURATION := 0.3
@@ -30,7 +19,6 @@ func shake(strength: float = DEFAULT_STRENGTH, duration: float = DEFAULT_DURATIO
 		return
 
 	if _time_left > 0.0:
-		# Already shaking: only take over if the new shake beats what is left of this one.
 		var remaining_strength := _strength * _time_left / _duration
 		if strength <= remaining_strength:
 			return
@@ -45,7 +33,6 @@ func shake(strength: float = DEFAULT_STRENGTH, duration: float = DEFAULT_DURATIO
 
 func _process(delta: float) -> void:
 	_time_left -= delta
-	# Also stops straight away if Screen Shake gets switched off mid-shake.
 	if _time_left <= 0.0 or not Settings.screen_shake_enabled:
 		_time_left = 0.0
 		_set_offset(Vector2.ZERO)
