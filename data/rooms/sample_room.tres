@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="RoomTemplate" format=3 uid="uid://b1kxmed4v44yf"]
+
+[ext_resource type="Script" uid="uid://delscme3lag8e" path="res://scripts/combat/room_template.gd" id="1_g07ws"]
+[ext_resource type="Script" uid="uid://blgcn0a86oeo4" path="res://scripts/combat/map_tile_type.gd" id="2_3vpae"]
+[ext_resource type="Resource" uid="uid://5g4y3qtrcph2" path="res://data/map_tiles/stone_floor.tres" id="3_kdueg"]
+[ext_resource type="Resource" uid="uid://drp1t2qanfgsj" path="res://data/map_tiles/stone_wall.tres" id="4_wwe85"]
+[ext_resource type="Resource" uid="uid://dhdo6o35rojl0" path="res://data/map_tiles/chasm.tres" id="5_obi6q"]
+[ext_resource type="Resource" uid="uid://c1efl3g7u1f3q" path="res://data/map_tiles/water.tres" id="6_tme44"]
+[ext_resource type="Resource" uid="uid://nf2aamwoh4pr" path="res://data/map_tiles/metal_bars.tres" id="7_78h46"]
+[ext_resource type="Resource" uid="uid://bihwdme2gsrvs" path="res://data/map_tiles/wood_floor.tres" id="8_1urp1"]
+
+[resource]
+script = ExtResource("1_g07ws")
+width = 10
+height = 10
+tile_palette = Array[ExtResource("2_3vpae")]([ExtResource("3_kdueg"), ExtResource("4_wwe85"), ExtResource("5_obi6q"), ExtResource("6_tme44"), ExtResource("7_78h46"), ExtResource("8_1urp1")])
+tile_indices = PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+player_spawns = Array[Vector2i]([Vector2i(1, 1)])
+enemy_spawns = Array[Vector2i]([Vector2i(9, 9)])
+metadata/_custom_type_script = "uid://delscme3lag8e"

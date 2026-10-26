@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="MapTileType" format=3 uid="uid://dhdo6o35rojl0"]
+
+[ext_resource type="Script" uid="uid://blgcn0a86oeo4" path="res://scripts/combat/map_tile_type.gd" id="1_kfvg5"]
+
+[resource]
+script = ExtResource("1_kfvg5")
+traversability = 3
+metadata/_custom_type_script = "uid://blgcn0a86oeo4"

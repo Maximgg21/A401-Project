@@ -1,5 +1,7 @@
 class_name CombatManager
-extends Node
+extends Node2D
+var entities: Array[Combatant]
+var entity_positions: Dictionary[Combatant, Vector2i]
 #this will handle things like the map, turn order, movement, attacks, and status effects
 
 #step 1. enter combat
