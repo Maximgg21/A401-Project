@@ -1,9 +1,9 @@
 class_name MapEditor
 extends Node2D
 # HOW TO USE:
-#press f6 to launch the editor. By default it loads test_map.
+#press f6 to launch the editor. By default it loads the sample map.
 #currently only some tile types have a color.
-#currently, to change room size
+#currently to resize the room, the size of the sample room needs to be changed
 
 #NOTE: I did NOT implement any secrity with this as it is a very simple api to help make rooms
 #so be careful when changing files. Almost everything beyond this file is vibecoded so stuff WILL break.
@@ -15,6 +15,7 @@ extends Node2D
 #render preview
 #decorations layer
 #non-enemy objects (such as furniture)
+#control to change room size
 
 signal map_changed(map: CombatMap) # new / loaded / resized map
 signal tiles_changed(positions: Array[Vector2i]) # after every edit, undo, redo
