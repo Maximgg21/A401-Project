@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bstcfjbxbv1qn" path="res://scenes/ui/options.gd" id="1_5v8ap"]
 
-[node name="Options" type="Control" unique_id=127536689]
+[node name="Options" type="Control" unique_id=245378608]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5v8ap")
 
-[node name="OptionsBG" type="ColorRect" parent="." unique_id=1670157328]
+[node name="OptionsBG" type="ColorRect" parent="." unique_id=1312164540]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,52 +20,97 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.006638326, 0.10976923, 0.0050044092, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1069121931]
-custom_minimum_size = Vector2(100, 0)
+[node name="Center" type="CenterContainer" parent="." unique_id=819192865]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -373.75
-offset_top = -254.25
-offset_right = 373.75
-offset_bottom = 254.25
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=768489118]
+[node name="Panel" type="PanelContainer" parent="Center" unique_id=704117351]
+custom_minimum_size = Vector2(560, 0)
 layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Center/Panel" unique_id=1994348680]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 28
+
+[node name="Layout" type="VBoxContainer" parent="Center/Panel/Margin" unique_id=818051540]
+layout_mode = 2
+theme_override_constants/separation = 28
+
+[node name="Title" type="Label" parent="Center/Panel/Margin/Layout" unique_id=2082321677]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
 text = "Options"
 horizontal_alignment = 1
 
-[node name="Fullscreen" type="HBoxContainer" parent="VBoxContainer" unique_id=477847647]
+[node name="Rows" type="GridContainer" parent="Center/Panel/Margin/Layout" unique_id=373402143]
 layout_mode = 2
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 22
+columns = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/Fullscreen" unique_id=484678285]
+[node name="FullscreenLabel" type="Label" parent="Center/Panel/Margin/Layout/Rows" unique_id=435626677]
 layout_mode = 2
-text = "Fullscreen (WIP)"
+text = "Fullscreen"
 
-[node name="FullscreenToggle" type="CheckButton" parent="VBoxContainer/Fullscreen" unique_id=1503467656]
+[node name="FullscreenToggle" type="CheckButton" parent="Center/Panel/Margin/Layout/Rows" unique_id=888068191]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 0
 
-[node name="MasterVolume" type="HBoxContainer" parent="VBoxContainer" unique_id=91352240]
+[node name="ScreenShakeLabel" type="Label" parent="Center/Panel/Margin/Layout/Rows" unique_id=965141202]
 layout_mode = 2
+text = "Screen Shake"
 
-[node name="Label" type="Label" parent="VBoxContainer/MasterVolume" unique_id=1133206111]
+[node name="ScreenShakeToggle" type="CheckButton" parent="Center/Panel/Margin/Layout/Rows" unique_id=1779646491]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Master Volume (WIP)"
+size_flags_horizontal = 0
+button_pressed = true
 
-[node name="MasterSlider" type="HSlider" parent="VBoxContainer/MasterVolume" unique_id=1200398948]
-custom_minimum_size = Vector2(100, 0)
+[node name="VolumeLabel" type="Label" parent="Center/Panel/Margin/Layout/Rows" unique_id=1411197132]
 layout_mode = 2
+text = "Master Volume"
+
+[node name="VolumeControl" type="HBoxContainer" parent="Center/Panel/Margin/Layout/Rows" unique_id=1754237654]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="VolumeSlider" type="HSlider" parent="Center/Panel/Margin/Layout/Rows/VolumeControl" unique_id=1811861953]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 4
 value = 100.0
 
-[node name="BackButton" type="Button" parent="VBoxContainer" unique_id=32103763]
-modulate = Color(4.768765, 4.768765, 4.768765, 1)
+[node name="VolumeValue" type="Label" parent="Center/Panel/Margin/Layout/Rows/VolumeControl" unique_id=595615604]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 2
+text = "100%"
+horizontal_alignment = 2
+
+[node name="Buttons" type="HBoxContainer" parent="Center/Panel/Margin/Layout" unique_id=1892016131]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="ResetButton" type="Button" parent="Center/Panel/Margin/Layout/Buttons" unique_id=170093779]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "Reset to Defaults"
+
+[node name="BackButton" type="Button" parent="Center/Panel/Margin/Layout/Buttons" unique_id=1201494994]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 text = "Back"
