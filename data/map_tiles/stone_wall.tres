@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MapTileType" format=3 uid="uid://drp1t2qanfgsj"]
+
+[ext_resource type="Script" uid="uid://blgcn0a86oeo4" path="res://scripts/combat/map_tile_type.gd" id="1_cihue"]
+
+[resource]
+script = ExtResource("1_cihue")
+movement_cost = 100
+blocks_los = true
+metadata/_custom_type_script = "uid://blgcn0a86oeo4"

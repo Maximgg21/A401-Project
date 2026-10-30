@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://ck72vplsdr8g4"]
+
+[ext_resource type="Script" uid="uid://cn2gxrmu6jts1" path="res://scenes/map_editor/map_editor.gd" id="1_p4a8s"]
+[ext_resource type="Script" uid="uid://c5s53fo7f2mwb" path="res://scenes/map_editor/map_editor_view.gd" id="2_14mad"]
+[ext_resource type="Resource" uid="uid://b1kxmed4v44yf" path="res://data/rooms/sample_room.tres" id="2_frwdr"]
+[ext_resource type="Script" uid="uid://df2yf4xi6p0cm" path="res://scenes/map_editor/editor_input.gd" id="3_i0iqq"]
+[ext_resource type="Resource" uid="uid://5g4y3qtrcph2" path="res://data/map_tiles/stone_floor.tres" id="3_pwm8t"]
+[ext_resource type="Script" uid="uid://blgcn0a86oeo4" path="res://scripts/combat/map_tile_type.gd" id="4_x6j54"]
+[ext_resource type="Resource" uid="uid://drp1t2qanfgsj" path="res://data/map_tiles/stone_wall.tres" id="5_bcy58"]
+[ext_resource type="Resource" uid="uid://dhdo6o35rojl0" path="res://data/map_tiles/chasm.tres" id="6_15css"]
+[ext_resource type="Resource" uid="uid://c1efl3g7u1f3q" path="res://data/map_tiles/water.tres" id="7_lq754"]
+[ext_resource type="Resource" uid="uid://nf2aamwoh4pr" path="res://data/map_tiles/metal_bars.tres" id="8_uk6pk"]
+[ext_resource type="Resource" uid="uid://bihwdme2gsrvs" path="res://data/map_tiles/wood_floor.tres" id="9_7lxt6"]
+[ext_resource type="Script" uid="uid://548hv27vlbcu" path="res://scenes/map_editor/editor_camera.gd" id="12_pwm8t"]
+
+[node name="MapEditor" type="Node2D" unique_id=955155211]
+script = ExtResource("1_p4a8s")
+template = ExtResource("2_frwdr")
+default_type = ExtResource("3_pwm8t")
+available_types = Array[ExtResource("4_x6j54")]([ExtResource("3_pwm8t"), ExtResource("5_bcy58"), ExtResource("6_15css"), ExtResource("7_lq754"), ExtResource("8_uk6pk"), ExtResource("9_7lxt6")])
+
+[node name="MapEditorView" type="Node2D" parent="." unique_id=794336469]
+script = ExtResource("2_14mad")
+
+[node name="EditorInput" type="Node2D" parent="." unique_id=189834116]
+script = ExtResource("3_i0iqq")
+
+[node name="EditorCamera" type="Camera2D" parent="." unique_id=1481421781]
+position = Vector2(573, 325)
+script = ExtResource("12_pwm8t")

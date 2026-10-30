@@ -8,9 +8,10 @@ enum Movement {
 	FLYING,
 }
 enum Team {
+	NONE,
 	ALLY,
 	ENEMY,
-	NEUTRAL
+	NEUTRAL,
 }
 
 signal movement_changed
@@ -20,7 +21,7 @@ var movement: int # How many tiles can I move
 var team: Team
 var movement_type: Movement
 
+
 func start_turn() -> void:
 	movement = speed
 	movement_changed.emit()
-	
