@@ -5,41 +5,55 @@ var map_node = preload("res://entities/map_nodes/basic_map_node.tscn")
 func _ready() -> void:
 	#10/30/2026: Added randomizer variable based on Runstate random number generator
 	var random = RunState.rng
-	var map = []
+	#NOTE: Set below as seperate func that gets called?
+	#10/31/2026: Defined array type
+	var map: Array[Array] = []
 	#10/30/2026: Renamed node_spacing to h_node_spacing, made it a const
 	#added v_node_spacing
 	#added v_node_pos (position of nodes in regard to verticality)
 	#added node_scale (how much nodes are sized up)
-	const h_node_spacing = 60
-	const v_node_spacing = 100
-	const v_node_pos = 300
-	const node_scale = 2
+	#10/31/2026: Updated consts to fit requested naming conventions by gdlint
+	const H_NODE_SPACING = 60
+	const V_NODE_SPACING = 100
+	const V_NODE_POS = 300
+	const NODE_SCALE = 2
+
 	for i in range(1,16):
-		map.append([0,0,0])
+		#10/31/2026: Defined sub-array type
+		map.append([] as Array[Node2D])
 		#Starting + Ending node
 		if i==1 or i==15:
-			map[i-1][1] = map_node.instantiate()
-			map[i-1][1].position += Vector2(h_node_spacing*i,v_node_pos)
-			map[i-1][1].scale = Vector2(node_scale,node_scale)
+			map[i-1].append(map_node.instantiate())
+			map[i-1][0].position += Vector2(H_NODE_SPACING*i,V_NODE_POS)
+			map[i-1][0].scale = Vector2(NODE_SCALE,NODE_SCALE)
 		else:
 			#10/30/2026: Updated with game random seed
 			var num_nodes = random.randi_range(1,3)
 			#10/30/2026: Replaced extended conditional statement with for loop
+			#10/31/2026: Changed logic, append based array filling
 			for x in range(0,3):
-				#if 1 node: place in middle
-				#if 2 nodes: place on top & bottom
-				#if 3 nodes: fill all slots
-				if (num_nodes==1 and x==1
-				or  num_nodes==2 and (x==0 or x==2)
-				or  num_nodes==3):
-					map[i-1][x] = map_node.instantiate()
-					map[i-1][x].position += Vector2(h_node_spacing*i,v_node_pos+(x-1)*v_node_spacing)
-					map[i-1][x].scale = Vector2(node_scale,node_scale)
+				#establish placement for nodes
+				var node_placement = x-1
+				if num_nodes==1:
+					node_placement = 0
+				elif num_nodes==2:
+					if x==0:
+						node_placement = -1
+					else:
+						node_placement = 1
+
+				map[i-1].append(map_node.instantiate())
+				map[i-1][x].position += Vector2(H_NODE_SPACING*i,V_NODE_POS+(node_placement)*V_NODE_SPACING)
+				map[i-1][x].scale = Vector2(NODE_SCALE,NODE_SCALE)
+
+				if num_nodes == 1:
+					break
+				elif num_nodes == 2 and x==1:
+					break
 	for i in map:
 		for x in i:
-			#if not int (aka an object)
-			if typeof(x) != 2:
-				self.add_child(x)
+			#10/31/2026: Removed int conditional
+			self.add_child(x)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
 	#pass
