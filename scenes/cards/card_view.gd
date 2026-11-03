@@ -24,8 +24,9 @@ var card: Card:
 			data = card.data
 
 var _tween: Tween
-var _prev_z_index: int
-var _prev_scale: Vector2
+var _base_z_index: int
+var _base_angle: float
+var _base_scale: Vector2
 
 @onready var _body: PanelContainer = %Body
 @onready var _name_label: Label = %NameLabel
@@ -37,6 +38,9 @@ var _prev_scale: Vector2
 
 func _ready() -> void:
 	custom_minimum_size = SIZE
+	_base_z_index = z_index
+	_base_angle = rotation
+	_base_scale = scale
 	_refresh()
 
 
@@ -57,10 +61,10 @@ func _refresh() -> void:
 func set_hovered(hovered: bool):
 	_restart_tween()
 	if hovered:
-		_prev_z_index = z_index
-		_prev_scale = scale
-		_tween.tween_property(self, "scale", scale + Vector2(0.1, 0.1), 0.1)
+		scale = _base_scale + Vector2(0.2, 0.2)
 		z_index = 100
+		rotation = 0.0
 	else:
-		_tween.tween_property(self, "scale", _prev_scale, 0.1)
-		z_index = _prev_z_index
+		_tween.tween_property(self, "scale", _base_scale, 0.2)
+		z_index = _base_z_index
+		rotation = _base_angle
