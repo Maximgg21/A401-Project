@@ -1,5 +1,5 @@
 class_name MapTile
-extends Resource
+extends RefCounted
 
 enum Terrain {
 	STONE,

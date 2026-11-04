@@ -25,15 +25,15 @@ var map_width: int
 var map_height: int
 
 
-func render_map(tiles: Array[MapTile], width: int, height: int) -> void:
+func render_map(new_map: CombatMap) -> void:
 	clear()
 
-	map_tiles = tiles
-	map_width = width
-	map_height = height
+	map_tiles = new_map.tiles
+	map_width = new_map.width
+	map_height = new_map.height
 
-	for y in range(height):
-		for x in range(width):
+	for y in range(new_map.height):
+		for x in range(new_map.width):
 			render_tile(Vector2i(x, y))
 
 
@@ -44,9 +44,8 @@ func render_tile(position: Vector2i) -> void:
 		return
 
 	# Step 1: determine which surrounding tiles connect to this one.
-
+		#
 	# Step 2: use tile type + neighbors to determine what art to use.
-	# TODO: var visual := get_visual(tile.type, neighbors)
 
 	# Step 3: render the logical tile as a 2x2 group.
 
