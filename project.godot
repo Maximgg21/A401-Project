@@ -20,7 +20,7 @@ config/icon="res://icon.svg"
 RunState="*uid://c6pikp7gxn2ck"
 Achievements="*uid://db4kvslvpwwmw"
 ScreenShake="*uid://qh6kagh3vmd3"
-Settings="*uid://bpg03ptbo0lcx"
+GameSettings="*uid://bpg03ptbo0lcx"
 
 [display]
 
@@ -29,7 +29,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg")
+enabled=PackedStringArray()
 
 [input]
 

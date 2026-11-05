@@ -35,38 +35,38 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _exit_tree() -> void:
-	Settings.flush()
+	GameSettings.flush()
 
 
 func _refresh_from_settings() -> void:
-	fullscreen_toggle.set_pressed_no_signal(Settings.fullscreen)
-	screen_shake_toggle.set_pressed_no_signal(Settings.screen_shake_enabled)
-	volume_slider.set_value_no_signal(Settings.master_volume * 100.0)
+	fullscreen_toggle.set_pressed_no_signal(GameSettings.fullscreen)
+	screen_shake_toggle.set_pressed_no_signal(GameSettings.screen_shake_enabled)
+	volume_slider.set_value_no_signal(GameSettings.master_volume * 100.0)
 	_update_value_labels()
 
 
 func _update_value_labels() -> void:
-	volume_value.text = "%d%%" % roundi(Settings.master_volume * 100.0)
+	volume_value.text = "%d%%" % roundi(GameSettings.master_volume * 100.0)
 
 
 func _on_fullscreen_toggled(enabled: bool) -> void:
-	Settings.fullscreen = enabled
+	GameSettings.fullscreen = enabled
 
 
 func _on_screen_shake_toggled(enabled: bool) -> void:
-	Settings.screen_shake_enabled = enabled
+	GameSettings.screen_shake_enabled = enabled
 	if enabled:
 		# A small demo so the player feels what they just turned on.
 		ScreenShake.shake(SHAKE_PREVIEW_STRENGTH, SHAKE_PREVIEW_SECONDS)
 
 
 func _on_volume_changed(value: float) -> void:
-	Settings.master_volume = value / 100.0
+	GameSettings.master_volume = value / 100.0
 	_update_value_labels()
 
 
 func _on_reset_pressed() -> void:
-	Settings.reset_to_defaults()
+	GameSettings.reset_to_defaults()
 	_refresh_from_settings()
 
 
