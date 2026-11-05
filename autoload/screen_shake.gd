@@ -15,7 +15,7 @@ func _ready() -> void:
 
 
 func shake(strength: float = DEFAULT_STRENGTH, duration: float = DEFAULT_DURATION) -> void:
-	if not Settings.screen_shake_enabled or duration <= 0.0:
+	if not GameSettings.screen_shake_enabled or duration <= 0.0:
 		return
 
 	if _time_left > 0.0:
@@ -33,7 +33,7 @@ func shake(strength: float = DEFAULT_STRENGTH, duration: float = DEFAULT_DURATIO
 
 func _process(delta: float) -> void:
 	_time_left -= delta
-	if _time_left <= 0.0 or not Settings.screen_shake_enabled:
+	if _time_left <= 0.0 or not GameSettings.screen_shake_enabled:
 		_time_left = 0.0
 		_set_offset(Vector2.ZERO)
 		set_process(false)
