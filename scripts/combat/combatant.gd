@@ -18,6 +18,7 @@ signal movement_changed
 
 var speed: int # How many movement do I gain every turn
 var movement: int # How many tiles can I move
+var block: int
 var team: Team
 var movement_type: Movement
 
@@ -25,3 +26,20 @@ var movement_type: Movement
 func start_turn() -> void:
 	movement = speed
 	movement_changed.emit()
+	block = 0
+
+
+func take_damage(amount: int) -> void:
+	if amount < block:
+		block -= amount
+	else:
+		super(amount - block)
+		block = 0
+
+
+func gain_block(amount: int) -> void:
+	block += amount
+	
+
+func gain_movement(amount: int) -> void:
+	movement += amount

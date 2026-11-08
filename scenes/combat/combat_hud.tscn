@@ -136,4 +136,4 @@ texture_normal = SubResource("CompressedTexture2D_okdr1")
 texture_pressed = SubResource("CompressedTexture2D_xxsmo")
 texture_hover = SubResource("CompressedTexture2D_fi5gp")
 
-[connection signal="pressed" from="EndTurnButton" to="." method="_end_turn"]
+[connection signal="pressed" from="EndTurnButton" to="." method="_on_end_turn"]

@@ -13,7 +13,9 @@ func _init() -> void:
 	current_health = max_health
 
 
-func take_damage(amount: int):
-	current_health = clampi(current_health - amount, 0, max_health)
+func take_damage(amount: int) -> void:
+	if amount == 0:
+		return
 
+	current_health = clampi(current_health - amount, 0, max_health)
 	health_changed.emit()

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cnrk0m88mafdg"]
+
+[ext_resource type="Script" uid="uid://shafwmw6k7hs" path="res://scenes/combat/combat.gd" id="1_6aonj"]
+[ext_resource type="Script" uid="uid://crlbwcqxcpini" path="res://scripts/combat/combat_manager.gd" id="2_ltalu"]
+[ext_resource type="PackedScene" uid="uid://cp6p563x82u7y" path="res://scenes/combat/combat_hud.tscn" id="2_pqpfu"]
+[ext_resource type="PackedScene" uid="uid://dogku6ym3gdjy" path="res://entities/player/hero_view.tscn" id="4_4voa6"]
+[ext_resource type="Resource" uid="uid://bnke7jodsmnxb" path="res://data/heroes/starter_hero.tres" id="5_jgg25"]
+
+[node name="Combat" type="Node2D" unique_id=176349451 node_paths=PackedStringArray("manager")]
+script = ExtResource("1_6aonj")
+manager = NodePath("CombatManager")
+
+[node name="CombatManager" type="Node2D" parent="." unique_id=1142577891]
+script = ExtResource("2_ltalu")
+metadata/_custom_type_script = "uid://crlbwcqxcpini"
+
+[node name="Hero" parent="." unique_id=1936538729 instance=ExtResource("4_4voa6")]
+unique_name_in_owner = true
+visible = true
+position = Vector2(555, 219)
+scale = Vector2(2.5, 2.5)
+data = ExtResource("5_jgg25")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=649451520]
+
+[node name="CombatHud" parent="CanvasLayer" unique_id=1549386585 node_paths=PackedStringArray("manager") instance=ExtResource("2_pqpfu")]
+manager = NodePath("../../CombatManager")
+metadata/_edit_use_anchors_ = true
