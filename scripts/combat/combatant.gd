@@ -1,5 +1,8 @@
 class_name Combatant
 extends MapEntity
+
+signal movement_changed
+
 #this represents enemies and allies
 enum Movement {
 	NONE,
@@ -13,8 +16,6 @@ enum Team {
 	ENEMY,
 	NEUTRAL,
 }
-
-signal movement_changed
 
 var speed: int # How many movement do I gain every turn
 var movement: int # How many tiles can I move
@@ -39,7 +40,7 @@ func take_damage(amount: int) -> void:
 
 func gain_block(amount: int) -> void:
 	block += amount
-	
+
 
 func gain_movement(amount: int) -> void:
 	movement += amount
