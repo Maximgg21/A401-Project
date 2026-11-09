@@ -7,6 +7,12 @@ enum Terrain {
 	WATER,
 }
 
+enum RenderType {
+	FLOOR,
+	WALL,
+	SINGLETON # a tile that will always be rendered the same, regardless of any nearby tiles
+}
+
 enum Traversability {
 	NONE,
 	GROUND,
