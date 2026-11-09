@@ -20,4 +20,11 @@ enum Traversability {
 	FLYING,
 }
 
+enum Singleton {
+	NONE,
+	WATER,
+	BARS,
+	CHASM
+}
+
 @export var type: MapTileType

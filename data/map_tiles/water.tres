@@ -7,4 +7,5 @@ script = ExtResource("1_xp41b")
 traversability = 2
 terrain = 2
 render_type = 2
+singleton = 1
 metadata/_custom_type_script = "uid://blgcn0a86oeo4"
