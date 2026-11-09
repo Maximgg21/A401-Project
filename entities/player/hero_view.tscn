@@ -267,6 +267,3 @@ sprite_frames = SubResource("SpriteFrames_sust4")
 animation = &"idle_down"
 frame = 1
 frame_progress = 0.12347859
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1807322343]
-zoom = Vector2(4, 4)
