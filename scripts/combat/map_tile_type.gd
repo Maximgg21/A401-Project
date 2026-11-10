@@ -5,3 +5,5 @@ extends Resource
 @export var traversability: MapTile.Traversability
 @export var blocks_los: bool = false
 @export var terrain: MapTile.Terrain
+@export var render_type: MapTile.RenderType
+@export var singleton: MapTile.Singleton

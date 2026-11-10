@@ -5,4 +5,6 @@
 [resource]
 script = ExtResource("1_kfvg5")
 traversability = 3
+render_type = 2
+singleton = 3
 metadata/_custom_type_script = "uid://blgcn0a86oeo4"

@@ -6,4 +6,5 @@
 script = ExtResource("1_cihue")
 movement_cost = 100
 blocks_los = true
+render_type = 1
 metadata/_custom_type_script = "uid://blgcn0a86oeo4"

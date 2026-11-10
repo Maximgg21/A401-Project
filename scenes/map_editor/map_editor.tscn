@@ -12,6 +12,9 @@
 [ext_resource type="Resource" uid="uid://nf2aamwoh4pr" path="res://data/map_tiles/metal_bars.tres" id="8_uk6pk"]
 [ext_resource type="Resource" uid="uid://bihwdme2gsrvs" path="res://data/map_tiles/wood_floor.tres" id="9_7lxt6"]
 [ext_resource type="Script" uid="uid://548hv27vlbcu" path="res://scenes/map_editor/editor_camera.gd" id="12_pwm8t"]
+[ext_resource type="Script" uid="uid://dxbr875roxee3" path="res://scenes/combat/map_renderer.gd" id="13_15css"]
+[ext_resource type="TileSet" uid="uid://rym8sugighb6" path="res://data/tilesets/dungeon.tres" id="14_lq754"]
+[ext_resource type="Script" uid="uid://cobnj4fhbgyir" path="res://scenes/map_editor/map_editor_preview.gd" id="15_uk6pk"]
 
 [node name="MapEditor" type="Node2D" unique_id=955155211]
 script = ExtResource("1_p4a8s")
@@ -28,3 +31,22 @@ script = ExtResource("3_i0iqq")
 [node name="EditorCamera" type="Camera2D" parent="." unique_id=1481421781]
 position = Vector2(573, 325)
 script = ExtResource("12_pwm8t")
+
+[node name="MapRenderer" type="Node2D" parent="." unique_id=1069735079]
+y_sort_enabled = true
+script = ExtResource("13_15css")
+
+[node name="Floor" type="TileMapLayer" parent="MapRenderer" unique_id=93688945]
+z_index = -1
+tile_set = ExtResource("14_lq754")
+
+[node name="CloseWall" type="TileMapLayer" parent="MapRenderer" unique_id=531564246]
+y_sort_enabled = true
+tile_set = ExtResource("14_lq754")
+
+[node name="FarWall" type="TileMapLayer" parent="MapRenderer" unique_id=345861076]
+y_sort_enabled = true
+tile_set = ExtResource("14_lq754")
+
+[node name="EditorPreview" type="Node2D" parent="." unique_id=546472615]
+script = ExtResource("15_uk6pk")

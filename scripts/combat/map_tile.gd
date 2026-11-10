@@ -1,5 +1,5 @@
 class_name MapTile
-extends Resource
+extends RefCounted
 
 enum Terrain {
 	STONE,
@@ -7,11 +7,24 @@ enum Terrain {
 	WATER,
 }
 
+enum RenderType {
+	FLOOR,
+	WALL,
+	SINGLETON # a tile that will always be rendered the same, regardless of any nearby tiles
+}
+
 enum Traversability {
 	NONE,
 	GROUND,
 	WATER,
 	FLYING,
+}
+
+enum Singleton {
+	NONE,
+	WATER,
+	BARS,
+	CHASM
 }
 
 @export var type: MapTileType

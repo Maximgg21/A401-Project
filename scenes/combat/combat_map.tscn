@@ -1,14 +1,35 @@
-[gd_scene format=4 uid="uid://bbmpmn6vea6b2"]
+[gd_scene format=3 uid="uid://bbmpmn6vea6b2"]
 
 [ext_resource type="Script" uid="uid://bvxgv8snlcag5" path="res://scenes/combat/combat_map_node.gd" id="1_ldplt"]
 [ext_resource type="TileSet" uid="uid://rym8sugighb6" path="res://data/tilesets/dungeon.tres" id="2_7aq0h"]
-[ext_resource type="Script" uid="uid://bwtxp0nd3pdnq" path="res://scenes/combat/map_renderer.gd" id="3_6qeux"]
+[ext_resource type="Script" uid="uid://dxbr875roxee3" path="res://scenes/combat/map_renderer.gd" id="3_6qeux"]
+[ext_resource type="Script" uid="uid://bsvbds46s7r2k" path="res://scenes/combat/map_entities.gd" id="4_7aq0h"]
 
 [node name="CombatMap" type="Node2D" unique_id=696438421]
+y_sort_enabled = true
 script = ExtResource("1_ldplt")
 
-[node name="MapRenderer" type="TileMapLayer" parent="." unique_id=1126203277]
-tile_map_data = PackedByteArray("AAAAAAAAAAADAAQAAAABAAAAAAACAAAAAAACAAAAAAACAAAAAAADAAAAAAACAAAAAAAEAAAAAAACAAAAAAAFAAAAAAACAAAAAAAGAAAAAAACAAAAAAAHAAAAAAACAAAAAAAAAAEAAAADAAUAAAAAAAIAAAADAAUAAAAAAAMAAAADAAUAAAAAAAQAAAADAAUAAAAAAAUAAAADAAUAAAAAAAYAAAADAAUAAAAAAAcAAAADAAUAAAAAAAgAAAADAAYAAAABAAgAAAABAAMAAAACAAgAAAABAAMAAAADAAgAAAABAAMAAAAEAAgAAAABAAMAAAABAAEAAAAAAAEAAAACAAEAAAABAAEAAAADAAEAAAABAAEAAAAEAAEAAAABAAEAAAAFAAEAAAABAAEAAAAGAAEAAAABAAEAAAAHAAEAAAACAAEAAAABAAIAAAAAAAIAAAACAAIAAAABAAIAAAADAAIAAAABAAIAAAAEAAIAAAABAAIAAAAFAAIAAAABAAIAAAAGAAIAAAABAAIAAAAHAAIAAAACAAIAAAAFAAgAAAABAAMAAAAGAAgAAAABAAMAAAAHAAgAAAABAAMAAAAIAAgAAAAEAAYAAAAIAAIAAAAEAAUAAAAIAAMAAAAEAAUAAAAIAAQAAAAEAAUAAAAIAAUAAAAEAAUAAAAIAAYAAAAEAAUAAAAIAAcAAAAEAAUAAAAIAAEAAAAEAAUAAAAIAAAAAAAEAAQAAAABAAMAAAAEAAAAAAABAAQAAAAEAAEAAAABAAUAAAAEAAEAAAABAAYAAAAEAAEAAAABAAcAAAAEAAEAAAACAAcAAAAFAAEAAAACAAYAAAAFAAEAAAACAAUAAAAFAAEAAAACAAQAAAAFAAEAAAACAAMAAAAFAAAAAAADAAMAAAAFAAAAAAADAAQAAAAFAAEAAAADAAUAAAAFAAEAAAADAAYAAAAFAAEAAAADAAcAAAAFAAEAAAAEAAcAAAAFAAEAAAAEAAYAAAAFAAEAAAAFAAYAAAAFAAEAAAAFAAUAAAAFAAEAAAAFAAQAAAAFAAEAAAAFAAMAAAAFAAAAAAAEAAMAAAAFAAAAAAAEAAQAAAAFAAEAAAAEAAUAAAAFAAEAAAAFAAcAAAAFAAEAAAAGAAcAAAAFAAEAAAAHAAcAAAAGAAEAAAAHAAYAAAAGAAEAAAAGAAYAAAAFAAEAAAAGAAUAAAAFAAEAAAAGAAQAAAAFAAEAAAAHAAQAAAAGAAEAAAAHAAMAAAAGAAAAAAAGAAMAAAAFAAAAAAAHAAUAAAAGAAEAAAA=")
-tile_set = ExtResource("2_7aq0h")
-collision_enabled = false
+[node name="MapRenderer" type="Node2D" parent="." unique_id=1978382316]
+y_sort_enabled = true
 script = ExtResource("3_6qeux")
+
+[node name="Floor" type="TileMapLayer" parent="MapRenderer" unique_id=782340443]
+tile_set = ExtResource("2_7aq0h")
+
+[node name="SingletonTiles" type="TileMapLayer" parent="MapRenderer" unique_id=1264891847]
+z_index = 1
+y_sort_enabled = true
+tile_set = ExtResource("2_7aq0h")
+
+[node name="FarWall" type="TileMapLayer" parent="MapRenderer" unique_id=831869261]
+z_index = 2
+y_sort_enabled = true
+tile_set = ExtResource("2_7aq0h")
+
+[node name="CloseWall" type="TileMapLayer" parent="MapRenderer" unique_id=809476117]
+y_sort_enabled = true
+tile_set = ExtResource("2_7aq0h")
+
+[node name="MapEntities" type="Node2D" parent="." unique_id=101923092]
+y_sort_enabled = true
+script = ExtResource("4_7aq0h")
