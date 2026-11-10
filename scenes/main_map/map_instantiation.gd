@@ -21,6 +21,7 @@ func _ready() -> void:
 			if i==1:
 				#NOTE: REPLACE THIS WITH WHATEVER ENDS UP BEING THE START NODE
 				map[0][0].set_room("res://scenes/levels/game.tscn")
+				map[0][0].set_open()
 		else:
 			#10/30/2026: Updated with game random seed
 			var num_nodes = random.randi_range(1,3)
@@ -46,7 +47,6 @@ func _ready() -> void:
 				elif num_nodes == 2 and x==1:
 					break
 				#-
-				map[0][0].set_open()
 	for i in map:
 		for x in i:
 			#10/31/2026: Removed int conditional

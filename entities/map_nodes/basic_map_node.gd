@@ -1,6 +1,7 @@
 extends Node2D
 #instance IDs of the nodes this node is connected to
 var next_node = [0,0,0]
+var button = Button.new()
 var room_info
 var scene
 var is_open = 0
@@ -21,9 +22,23 @@ func set_room(room):
 	scene = load(room_info) # <- Scene then gets used to open room scene from main map
 func set_open():
 	is_open = 1
+	if !get_node_or_null("button"):
+		add_child(button)
+	else:
+		$button.show()
 	#NOTE: set changing visual indicator for what is open?
 func set_closed():
 	is_open = 0
+	$button.hide()
+
+func _ready():
+	button.text = "Click me"
+	button.pressed.connect(_button_pressed)
+
+func _button_pressed():
+	var open_room = load(room_info).instantiate()
+	get_tree().root.add_child(open_room)
+	get_parent().hide()
 #func open_room(): <- NOTE: WORK ON THIS. path input
 # Called when the node enters the scene tree for the first time.
 #func _ready() -> void:
