@@ -44,6 +44,15 @@ func _ready() -> void:
 	renderer.visible = false
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	var key := event as InputEventKey
+	if key == null or not key.pressed or key.echo or key.is_command_or_control_pressed():
+		return
+	if key.keycode == KEY_V:
+		set_preview(not previewing)
+		get_viewport().set_input_as_handled()
+
+
 func set_preview(on: bool) -> void:
 	if view == null or renderer == null or previewing == on:
 		return
@@ -58,15 +67,6 @@ func set_preview(on: bool) -> void:
 	if input != null:
 		input.set_editing_enabled(not on)
 	button.set_pressed_no_signal(on)
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	var key := event as InputEventKey
-	if key == null or not key.pressed or key.echo or key.is_command_or_control_pressed():
-		return
-	if key.keycode == KEY_V:
-		set_preview(not previewing)
-		get_viewport().set_input_as_handled()
 
 
 func _on_button_toggled(on: bool) -> void:

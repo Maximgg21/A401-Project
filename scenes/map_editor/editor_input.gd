@@ -19,7 +19,14 @@ extends Node
 ##   Middle drag  pan
 ##   Home         frame the whole room
 
-enum Tool { BRUSH, LINE, RECT, FILL, PLAYER_SPAWN, ENEMY_SPAWN }
+enum Tool {
+	BRUSH,
+	LINE,
+	RECT,
+	FILL,
+	PLAYER_SPAWN,
+	ENEMY_SPAWN,
+}
 
 @export var editor: MapEditor
 @export var view: MapEditorView
@@ -57,7 +64,9 @@ func _ready() -> void:
 			if child is MapEditorCamera:
 				camera = child # optional: without one, pan/zoom are simply disabled
 	if editor == null or view == null:
-		push_error("MapEditorInput: needs a MapEditor and a MapEditorView (siblings under MapEditor work automatically).")
+		push_error(
+			"MapEditorInput: needs a MapEditor and a MapEditorView (siblings under MapEditor work automatically)."
+		)
 		return
 	_save_dialog = _make_dialog(FileDialog.FILE_MODE_SAVE_FILE, "Save room as")
 	_save_dialog.file_selected.connect(_on_save_path_chosen)
@@ -68,16 +77,7 @@ func _ready() -> void:
 	_update_status()
 
 
-func selected_type() -> MapTileType:
-	if editor == null:
-		return null
-	if editor.available_types.is_empty():
-		return editor.default_type
-	return editor.available_types[posmod(type_index, editor.available_types.size())]
-
-
 # --------------------------------------------------------------------- events
-
 func _unhandled_input(event: InputEvent) -> void:
 	if editor == null or view == null or editor.map == null:
 		return
@@ -91,6 +91,24 @@ func _unhandled_input(event: InputEvent) -> void:
 		var key := event as InputEventKey
 		if key.pressed and not key.echo:
 			_on_key(key)
+
+
+func selected_type() -> MapTileType:
+	if editor == null:
+		return null
+	if editor.available_types.is_empty():
+		return editor.default_type
+	return editor.available_types[posmod(type_index, editor.available_types.size())]
+
+
+# ------------------------------------------------------------------- helpers
+func set_editing_enabled(enabled: bool) -> void:
+	if editing_enabled == enabled:
+		return
+	if not enabled and _dragging:
+		_end_stroke(view.mouse_cell()) # don't leave a stroke or undo batch half open
+	editing_enabled = enabled
+	_update_status()
 
 
 func _on_mouse_button(event: InputEventMouseButton) -> void:
@@ -168,17 +186,28 @@ func _on_key(event: InputEventKey) -> void:
 				handled = false
 	else:
 		match event.keycode:
-			KEY_1: current_tool = Tool.BRUSH
-			KEY_2: current_tool = Tool.LINE
-			KEY_3: current_tool = Tool.RECT
-			KEY_4: current_tool = Tool.FILL
-			KEY_5: current_tool = Tool.PLAYER_SPAWN
-			KEY_6: current_tool = Tool.ENEMY_SPAWN
-			KEY_Q: _cycle_type(-1)
-			KEY_E: _cycle_type(1)
-			KEY_BRACKETLEFT: brush_radius = maxi(brush_radius - 1, 0)
-			KEY_BRACKETRIGHT: brush_radius = mini(brush_radius + 1, 8)
-			KEY_HOME: _frame_map()
+			KEY_1:
+				current_tool = Tool.BRUSH
+			KEY_2:
+				current_tool = Tool.LINE
+			KEY_3:
+				current_tool = Tool.RECT
+			KEY_4:
+				current_tool = Tool.FILL
+			KEY_5:
+				current_tool = Tool.PLAYER_SPAWN
+			KEY_6:
+				current_tool = Tool.ENEMY_SPAWN
+			KEY_Q:
+				_cycle_type(-1)
+			KEY_E:
+				_cycle_type(1)
+			KEY_BRACKETLEFT:
+				brush_radius = maxi(brush_radius - 1, 0)
+			KEY_BRACKETRIGHT:
+				brush_radius = mini(brush_radius + 1, 8)
+			KEY_HOME:
+				_frame_map()
 			KEY_P:
 				_show_reach = not _show_reach
 				_refresh_reach()
@@ -190,7 +219,6 @@ func _on_key(event: InputEventKey) -> void:
 
 
 # --------------------------------------------------------------------- strokes
-
 func _begin_stroke(button: int, cell: Vector2i) -> void:
 	_message = ""
 	_dragging = true
@@ -250,17 +278,6 @@ func _clamp_to_map(cell: Vector2i) -> Vector2i:
 		clampi(cell.x, 0, editor.map.width - 1),
 		clampi(cell.y, 0, editor.map.height - 1),
 	)
-
-
-# ------------------------------------------------------------------- helpers
-
-func set_editing_enabled(enabled: bool) -> void:
-	if editing_enabled == enabled:
-		return
-	if not enabled and _dragging:
-		_end_stroke(view.mouse_cell()) # don't leave a stroke or undo batch half open
-	editing_enabled = enabled
-	_update_status()
 
 
 func _frame_map() -> void:
@@ -347,7 +364,7 @@ func _write(path: String) -> void:
 func _refresh_reach() -> void:
 	var cell := view.hover_cell
 	if not _show_reach or not editor.in_bounds(cell):
-		view.set_reach({})
+		view.set_reach({ })
 		return
 	var result := editor.preview_reachable(cell, Combatant.Movement.GROUND, reach_preview_movement)
 	view.set_reach(result["costs"])
@@ -396,7 +413,11 @@ func _update_status() -> void:
 		lines.append("NO MAP: assign default_type (and available_types) on the MapEditor node.")
 	if not _message.is_empty():
 		lines.append(_message)
-	lines.append("[1-6] tool  [Q/E] tile type  [ [ ] ] brush size  LMB paint / RMB erase  Shift = outline rect")
+	lines.append(
+		"[1-6] tool  [Q/E] tile type  [ [ ] ] brush size  LMB paint / RMB erase  Shift = outline rect"
+	)
 	lines.append("Wheel zoom  Middle-drag pan  Home frame room")
-	lines.append("Ctrl+Z/Y undo/redo  Ctrl+S save  Ctrl+Shift+S save as  Ctrl+O open  Ctrl+N new  P reachable preview")
+	lines.append(
+		"Ctrl+Z/Y undo/redo  Ctrl+S save  Ctrl+Shift+S save as  Ctrl+O open  Ctrl+N new  P reachable preview"
+	)
 	view.set_status("\n".join(lines))
