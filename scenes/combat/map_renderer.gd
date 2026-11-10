@@ -48,6 +48,7 @@ var map_height: int
 @onready var floor_layer: TileMapLayer = $Floor
 @onready var close_wall_layer: TileMapLayer = $CloseWall
 @onready var far_wall_layer: TileMapLayer = $FarWall
+@onready var singleton_layer: TileMapLayer = $SingletonTiles
 
 
 func render_map(new_map: CombatMap) -> void:
@@ -123,8 +124,7 @@ func render_singleton(pos: Vector2i, tile: MapTile) -> void:
 
 	for oy in RENDER_SCALE:
 		for ox in RENDER_SCALE:
-			floor_layer.set_cell(base + Vector2i(ox, oy), SOURCE_ID, atlas, alt)
-			#floor layer for now, maybe use a seperate layer later?
+			singleton_layer.set_cell(base + Vector2i(ox, oy), SOURCE_ID, atlas, alt)
 
 
 func get_tile(pos: Vector2i) -> MapTile:

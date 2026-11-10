@@ -14,14 +14,19 @@ y_sort_enabled = true
 script = ExtResource("3_6qeux")
 
 [node name="Floor" type="TileMapLayer" parent="MapRenderer" unique_id=782340443]
-z_index = -1
 tile_set = ExtResource("2_7aq0h")
 
-[node name="CloseWall" type="TileMapLayer" parent="MapRenderer" unique_id=809476117]
+[node name="SingletonTiles" type="TileMapLayer" parent="MapRenderer" unique_id=1264891847]
+z_index = 1
 y_sort_enabled = true
 tile_set = ExtResource("2_7aq0h")
 
 [node name="FarWall" type="TileMapLayer" parent="MapRenderer" unique_id=831869261]
+z_index = 2
+y_sort_enabled = true
+tile_set = ExtResource("2_7aq0h")
+
+[node name="CloseWall" type="TileMapLayer" parent="MapRenderer" unique_id=809476117]
 y_sort_enabled = true
 tile_set = ExtResource("2_7aq0h")
 
