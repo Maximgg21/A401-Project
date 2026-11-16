@@ -1,4 +1,7 @@
+class_name OptionsScreen
 extends Control
+
+signal closed
 
 const MAIN_MENU_PATH := "res://scenes/ui/main_menu.tscn"
 const SHAKE_PREVIEW_STRENGTH := 8.0
@@ -56,7 +59,6 @@ func _on_fullscreen_toggled(enabled: bool) -> void:
 func _on_screen_shake_toggled(enabled: bool) -> void:
 	GameSettings.screen_shake_enabled = enabled
 	if enabled:
-		# A small demo so the player feels what they just turned on.
 		ScreenShake.shake(SHAKE_PREVIEW_STRENGTH, SHAKE_PREVIEW_SECONDS)
 
 
@@ -71,4 +73,7 @@ func _on_reset_pressed() -> void:
 
 
 func _go_back() -> void:
-	get_tree().change_scene_to_file(MAIN_MENU_PATH)
+	if get_tree().current_scene == self:
+		get_tree().change_scene_to_file(MAIN_MENU_PATH)
+	else:
+		closed.emit()
