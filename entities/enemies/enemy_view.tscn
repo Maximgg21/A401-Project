@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://dhp4fscjgdk1a"]
+
+[ext_resource type="Script" uid="uid://b73pwdurc0u6s" path="res://entities/enemies/enemy_view.gd" id="1_hv3ni"]
+[ext_resource type="Texture2D" uid="uid://blcxbyat88hfg" path="res://assets/art/mobs/skeleton_crew/skeleton_rogue/idle/idle_sheet.png" id="2_esr7y"]
+[ext_resource type="PackedScene" uid="uid://dj5whwdk17pgj" path="res://scenes/combat/health_bar.tscn" id="3_oc5v4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6okyl"]
+size = Vector2(22, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oc5v4"]
+atlas = ExtResource("2_esr7y")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgobk"]
+atlas = ExtResource("2_esr7y")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlgq3"]
+atlas = ExtResource("2_esr7y")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_or4i7"]
+atlas = ExtResource("2_esr7y")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sust4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oc5v4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgobk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlgq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_or4i7")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=789386245]
+script = ExtResource("1_hv3ni")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1410431970]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_6okyl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1453703730]
+sprite_frames = SubResource("SpriteFrames_sust4")
+animation = &"idle"
+
+[node name="HealthBar" parent="." unique_id=1771207255 instance=ExtResource("3_oc5v4")]
+unique_name_in_owner = true
+offset_left = -12.0
+offset_top = 16.0
+offset_right = 12.0
+offset_bottom = 23.0

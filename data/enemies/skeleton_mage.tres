@@ -1,0 +1,144 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://l46nltbr1o51"]
+
+[ext_resource type="Script" uid="uid://bkxof0lkpan6c" path="res://scripts/enemies/enemy_data.gd" id="1_t7an7"]
+[ext_resource type="Texture2D" uid="uid://c8h32twdo6wnx" path="res://assets/art/mobs/skeleton_crew/skeleton_mage/death/death_sheet.png" id="2_7hket"]
+[ext_resource type="Texture2D" uid="uid://uq0esm65cj4m" path="res://assets/art/mobs/skeleton_crew/skeleton_mage/idle/idle_sheet.png" id="3_1wox3"]
+[ext_resource type="Texture2D" uid="uid://b83n2sbswft4u" path="res://assets/art/mobs/skeleton_crew/skeleton_mage/run/run_sheet.png" id="4_h31sk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvpwr"]
+atlas = ExtResource("2_7hket")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eylsv"]
+atlas = ExtResource("2_7hket")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hu78"]
+atlas = ExtResource("2_7hket")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfoa5"]
+atlas = ExtResource("2_7hket")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wonn"]
+atlas = ExtResource("2_7hket")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbucg"]
+atlas = ExtResource("2_7hket")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgaee"]
+atlas = ExtResource("3_1wox3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_at2u2"]
+atlas = ExtResource("3_1wox3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfwls"]
+atlas = ExtResource("3_1wox3")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkw5p"]
+atlas = ExtResource("3_1wox3")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcj7x"]
+atlas = ExtResource("4_h31sk")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ot8mf"]
+atlas = ExtResource("4_h31sk")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_476y7"]
+atlas = ExtResource("4_h31sk")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mg30m"]
+atlas = ExtResource("4_h31sk")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t25yt"]
+atlas = ExtResource("4_h31sk")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46scw"]
+atlas = ExtResource("4_h31sk")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gag8c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvpwr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eylsv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0hu78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfoa5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wonn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbucg")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgaee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_at2u2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfwls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkw5p")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcj7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ot8mf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_476y7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mg30m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t25yt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46scw")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_t7an7")
+name = "Skeleton Mage"
+base_health = 15
+base_speed = 1
+sprite = SubResource("SpriteFrames_gag8c")
+metadata/_custom_type_script = "uid://bkxof0lkpan6c"

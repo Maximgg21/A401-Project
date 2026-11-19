@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cjnkeot801ie4" path="res://assets/art/characters/body_a/animations/walk_base/walk_down_sheet.png" id="5_7thud"]
 [ext_resource type="Texture2D" uid="uid://d1tpacopqm4u1" path="res://assets/art/characters/body_a/animations/walk_base/walk_side_sheet.png" id="6_a1qjk"]
 [ext_resource type="Texture2D" uid="uid://catoj0mqua3da" path="res://assets/art/characters/body_a/animations/walk_base/walk_up_sheet.png" id="7_j3ovn"]
+[ext_resource type="PackedScene" uid="uid://dj5whwdk17pgj" path="res://scenes/combat/health_bar.tscn" id="8_58n4i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s6ww7"]
 size = Vector2(12, 8)
@@ -255,7 +256,6 @@ animations = [{
 }]
 
 [node name="Hero" type="CharacterBody2D" unique_id=1936538729]
-visible = false
 script = ExtResource("1_qiwj3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1145370361]
@@ -265,5 +265,10 @@ shape = SubResource("RectangleShape2D_s6ww7")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1553578674]
 sprite_frames = SubResource("SpriteFrames_sust4")
 animation = &"idle_down"
-frame = 1
-frame_progress = 0.12347859
+
+[node name="HealthBar" parent="." unique_id=1771207255 instance=ExtResource("8_58n4i")]
+unique_name_in_owner = true
+offset_left = -12.0
+offset_top = 16.0
+offset_right = 12.0
+offset_bottom = 23.0
