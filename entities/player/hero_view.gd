@@ -1,22 +1,13 @@
 class_name HeroView
-extends CharacterBody2D
+extends CombatantView
 
-const SPEED := 90.0
-
-@export var data: HeroData:
-	set(value):
-		data = value
-		if is_node_ready():
-			_refresh()
-
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+var hero: Hero
 
 
-func _physics_process(_delta: float) -> void:
-	var dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	velocity = dir * SPEED
-	move_and_slide()
-	_animate(dir)
+func setup(new_combatant: Combatant) -> void:
+	super(new_combatant)
+	hero = new_combatant as Hero
+	sprite.play("idle_down")
 
 
 func _animate(dir: Vector2) -> void:

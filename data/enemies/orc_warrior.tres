@@ -1,0 +1,144 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://07ty0rl3o7m6"]
+
+[ext_resource type="Script" uid="uid://bkxof0lkpan6c" path="res://scripts/enemies/enemy_data.gd" id="1_wc5te"]
+[ext_resource type="Texture2D" uid="uid://cuslygjfh3nbf" path="res://assets/art/mobs/orc_crew/orc_warrior/death/death_sheet.png" id="2_gigci"]
+[ext_resource type="Texture2D" uid="uid://d3qmmac7q6kfa" path="res://assets/art/mobs/orc_crew/orc_warrior/idle/idle_sheet.png" id="3_3ah2e"]
+[ext_resource type="Texture2D" uid="uid://bq2aa651dhb66" path="res://assets/art/mobs/orc_crew/orc_warrior/run/run_sheet.png" id="4_sx86a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjqeb"]
+atlas = ExtResource("2_gigci")
+region = Rect2(0, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymgb3"]
+atlas = ExtResource("2_gigci")
+region = Rect2(96, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msbvi"]
+atlas = ExtResource("2_gigci")
+region = Rect2(192, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3y4i"]
+atlas = ExtResource("2_gigci")
+region = Rect2(288, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djxnv"]
+atlas = ExtResource("2_gigci")
+region = Rect2(384, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78dt8"]
+atlas = ExtResource("2_gigci")
+region = Rect2(480, 0, 96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nj05g"]
+atlas = ExtResource("3_3ah2e")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmnrm"]
+atlas = ExtResource("3_3ah2e")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvqkh"]
+atlas = ExtResource("3_3ah2e")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kf0t"]
+atlas = ExtResource("3_3ah2e")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8tu84"]
+atlas = ExtResource("4_sx86a")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cr7i"]
+atlas = ExtResource("4_sx86a")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml6cc"]
+atlas = ExtResource("4_sx86a")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhjnb"]
+atlas = ExtResource("4_sx86a")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tny8c"]
+atlas = ExtResource("4_sx86a")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbd1d"]
+atlas = ExtResource("4_sx86a")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5nkqh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjqeb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymgb3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msbvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3y4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djxnv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78dt8")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nj05g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmnrm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvqkh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kf0t")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8tu84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cr7i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ml6cc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhjnb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tny8c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbd1d")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_wc5te")
+name = "Orc Warrior"
+base_health = 30
+base_speed = 1
+sprite = SubResource("SpriteFrames_5nkqh")
+metadata/_custom_type_script = "uid://bkxof0lkpan6c"

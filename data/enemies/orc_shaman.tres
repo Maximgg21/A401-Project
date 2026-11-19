@@ -1,0 +1,151 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://mwcaekrtqrj2"]
+
+[ext_resource type="Script" uid="uid://bkxof0lkpan6c" path="res://scripts/enemies/enemy_data.gd" id="1_i25js"]
+[ext_resource type="Texture2D" uid="uid://72ko7k2kn5cv" path="res://assets/art/mobs/orc_crew/orc_shaman/death/death_sheet.png" id="2_tvrlc"]
+[ext_resource type="Texture2D" uid="uid://dpjcw08upjiuw" path="res://assets/art/mobs/orc_crew/orc_shaman/idle/idle_sheet.png" id="3_nplgi"]
+[ext_resource type="Texture2D" uid="uid://xk2fpto34kt8" path="res://assets/art/mobs/orc_crew/orc_shaman/run/run_sheet.png" id="4_ku6h2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omiek"]
+atlas = ExtResource("2_tvrlc")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_257x0"]
+atlas = ExtResource("2_tvrlc")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2u0vl"]
+atlas = ExtResource("2_tvrlc")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wya1u"]
+atlas = ExtResource("2_tvrlc")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6oee"]
+atlas = ExtResource("2_tvrlc")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_no5nx"]
+atlas = ExtResource("2_tvrlc")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfi2x"]
+atlas = ExtResource("2_tvrlc")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bltg"]
+atlas = ExtResource("3_nplgi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfyp0"]
+atlas = ExtResource("3_nplgi")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ap1x1"]
+atlas = ExtResource("3_nplgi")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70n5x"]
+atlas = ExtResource("3_nplgi")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4xtm"]
+atlas = ExtResource("4_ku6h2")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohodf"]
+atlas = ExtResource("4_ku6h2")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cclix"]
+atlas = ExtResource("4_ku6h2")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvlle"]
+atlas = ExtResource("4_ku6h2")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gi34m"]
+atlas = ExtResource("4_ku6h2")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i17rc"]
+atlas = ExtResource("4_ku6h2")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ebx57"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omiek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_257x0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2u0vl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wya1u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6oee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_no5nx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfi2x")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bltg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfyp0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ap1x1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70n5x")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4xtm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohodf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cclix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvlle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gi34m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i17rc")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_i25js")
+name = "Orc Shaman"
+base_health = 15
+base_speed = 1
+sprite = SubResource("SpriteFrames_ebx57")
+metadata/_custom_type_script = "uid://bkxof0lkpan6c"
