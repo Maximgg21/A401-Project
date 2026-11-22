@@ -8,7 +8,8 @@ var hero: Hero
 
 
 func _ready() -> void:
-	start_run()
+	if hero == null:
+		start_run()
 
 
 func start_run(custom_seed: int = -1) -> void:
@@ -22,3 +23,4 @@ func start_run(custom_seed: int = -1) -> void:
 	deck.clear()
 	for card_data in hero.data.starting_deck.cards:
 		deck.append(Card.new(card_data))
+	print("RunState.start_run done, hero = ", hero)

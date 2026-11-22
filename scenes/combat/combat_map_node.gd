@@ -10,13 +10,17 @@ var new_map: CombatMap
 
 
 func _ready() -> void:
-	var map := CombatMap.from_template(TEST_ROOM) as CombatMap
-	if map == null:
-		push_error("test_room.tres is not a CombatMap")
-		return
+	var map := load_from_template(TEST_ROOM)
 	load_map(map)
 
 
+func load_from_template(template: RoomTemplate) -> CombatMap:
+	var map := CombatMap.from_template(template) as CombatMap
+	if map == null:
+		push_error("test_room.tres is not a CombatMap")
+		return null
+	return map
+
+
 func load_map(map: CombatMap) -> void:
-	new_map = map
-	map_renderer.render_map(new_map)
+	map_renderer.render_map(map)

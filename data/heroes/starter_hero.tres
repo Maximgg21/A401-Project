@@ -257,6 +257,6 @@ script = ExtResource("1_4p58c")
 starting_deck = ExtResource("2_i73iq")
 name = "Mike Tyson"
 base_health = 100
-base_speed = 2
+base_speed = 7
 sprite = SubResource("SpriteFrames_suwvm")
 metadata/_custom_type_script = "uid://cscn2vn3mlqrh"

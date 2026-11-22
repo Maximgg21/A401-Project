@@ -9,6 +9,10 @@
 y_sort_enabled = true
 script = ExtResource("1_ldplt")
 
+[node name="MapEntities" type="Node2D" parent="." unique_id=101923092]
+y_sort_enabled = true
+script = ExtResource("4_7aq0h")
+
 [node name="MapRenderer" type="Node2D" parent="." unique_id=1978382316]
 y_sort_enabled = true
 script = ExtResource("3_6qeux")
@@ -29,7 +33,3 @@ tile_set = ExtResource("2_7aq0h")
 [node name="CloseWall" type="TileMapLayer" parent="MapRenderer" unique_id=809476117]
 y_sort_enabled = true
 tile_set = ExtResource("2_7aq0h")
-
-[node name="MapEntities" type="Node2D" parent="." unique_id=101923092]
-y_sort_enabled = true
-script = ExtResource("4_7aq0h")

@@ -33,6 +33,7 @@ func find_reachable_tiles(
 	start: Vector2i,
 	max_movement: int,
 	entity: Combatant,
+	blocked: Dictionary = { },
 ) -> Dictionary:
 	var frontier: Array[Vector2i] = [start]
 
@@ -48,6 +49,9 @@ func find_reachable_tiles(
 
 		for direction in DIRECTIONS:
 			var next := current + direction
+
+			if not map.in_bounds(next) or blocked.has(next):
+				continue
 
 			if not map.in_bounds(next):
 				continue
