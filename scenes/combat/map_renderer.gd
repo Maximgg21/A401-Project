@@ -55,6 +55,7 @@ func render_map(new_map: CombatMap) -> void:
 	floor_layer.clear()
 	close_wall_layer.clear()
 	far_wall_layer.clear()
+	singleton_layer.clear()
 
 	map_tiles = new_map.tiles
 	map_width = new_map.width
@@ -86,6 +87,8 @@ func render_floor(pos: Vector2i, tile: MapTile):
 				floor_layer.set_cell(base + Vector2i(ox, oy), SOURCE_ID, STONE_FLOOR_ATLAS)
 			elif tile.type.terrain == MapTile.Terrain.WOOD:
 				floor_layer.set_cell(base + Vector2i(ox, oy), SOURCE_ID, WOOD_FLOOR_ATLAS)
+			elif tile.type.terrain == MapTile.Terrain.WATER:
+				floor_layer.set_cell(base + Vector2i(ox, oy), SOURCE_ID, WATER_ATLAS, WATER_ALT_ID)
 
 
 func render_wall(pos: Vector2i) -> void:
@@ -125,6 +128,23 @@ func render_singleton(pos: Vector2i, tile: MapTile) -> void:
 	for oy in RENDER_SCALE:
 		for ox in RENDER_SCALE:
 			singleton_layer.set_cell(base + Vector2i(ox, oy), SOURCE_ID, atlas, alt)
+
+
+func logical_to_global(cell: Vector2i) -> Vector2:
+	var tile_size := Vector2(floor_layer.tile_set.tile_size)
+	var local := floor_layer.map_to_local(cell * RENDER_SCALE) \
+			+ tile_size * (RENDER_SCALE - 1) * 0.5
+	return floor_layer.to_global(local)
+
+
+func global_to_logical(global_pos: Vector2) -> Vector2i:
+	var c := floor_layer.local_to_map(floor_layer.to_local(global_pos))
+	# floori, not integer division, so negative cells don't round toward zero
+	return Vector2i(floori(c.x / float(RENDER_SCALE)), floori(c.y / float(RENDER_SCALE)))
+
+
+func tile_pixel_size() -> Vector2:
+	return Vector2(floor_layer.tile_set.tile_size) * RENDER_SCALE
 
 
 func get_tile(pos: Vector2i) -> MapTile:

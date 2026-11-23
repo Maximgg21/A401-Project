@@ -32,21 +32,26 @@ script = ExtResource("3_i0iqq")
 position = Vector2(573, 325)
 script = ExtResource("12_pwm8t")
 
-[node name="MapRenderer" type="Node2D" parent="." unique_id=1069735079]
+[node name="EditorPreview" type="Node2D" parent="." unique_id=546472615]
+script = ExtResource("15_uk6pk")
+
+[node name="MapRenderer" type="Node2D" parent="." unique_id=394244079]
 y_sort_enabled = true
 script = ExtResource("13_15css")
 
-[node name="Floor" type="TileMapLayer" parent="MapRenderer" unique_id=93688945]
-z_index = -1
+[node name="Floor" type="TileMapLayer" parent="MapRenderer" unique_id=135980497]
 tile_set = ExtResource("14_lq754")
 
-[node name="CloseWall" type="TileMapLayer" parent="MapRenderer" unique_id=531564246]
+[node name="SingletonTiles" type="TileMapLayer" parent="MapRenderer" unique_id=454594857]
+z_index = 1
 y_sort_enabled = true
 tile_set = ExtResource("14_lq754")
 
-[node name="FarWall" type="TileMapLayer" parent="MapRenderer" unique_id=345861076]
+[node name="FarWall" type="TileMapLayer" parent="MapRenderer" unique_id=1986437522]
+z_index = 2
 y_sort_enabled = true
 tile_set = ExtResource("14_lq754")
 
-[node name="EditorPreview" type="Node2D" parent="." unique_id=546472615]
-script = ExtResource("15_uk6pk")
+[node name="CloseWall" type="TileMapLayer" parent="MapRenderer" unique_id=14283224]
+y_sort_enabled = true
+tile_set = ExtResource("14_lq754")
