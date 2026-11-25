@@ -38,6 +38,8 @@ enum Tool {
 var current_tool := Tool.BRUSH
 var brush_radius := 0
 var type_index := 0
+## False while previewing: painting and shortcuts are ignored, camera still works.
+var editing_enabled := true
 
 var _dragging := false
 var _button := MOUSE_BUTTON_NONE
@@ -75,16 +77,7 @@ func _ready() -> void:
 	_update_status()
 
 
-func selected_type() -> MapTileType:
-	if editor == null:
-		return null
-	if editor.available_types.is_empty():
-		return editor.default_type
-	return editor.available_types[posmod(type_index, editor.available_types.size())]
-
 # --------------------------------------------------------------------- events
-
-
 func _unhandled_input(event: InputEvent) -> void:
 	if editor == null or view == null or editor.map == null:
 		return
@@ -100,6 +93,24 @@ func _unhandled_input(event: InputEvent) -> void:
 			_on_key(key)
 
 
+func selected_type() -> MapTileType:
+	if editor == null:
+		return null
+	if editor.available_types.is_empty():
+		return editor.default_type
+	return editor.available_types[posmod(type_index, editor.available_types.size())]
+
+
+# ------------------------------------------------------------------- helpers
+func set_editing_enabled(enabled: bool) -> void:
+	if editing_enabled == enabled:
+		return
+	if not enabled and _dragging:
+		_end_stroke(view.mouse_cell()) # don't leave a stroke or undo batch half open
+	editing_enabled = enabled
+	_update_status()
+
+
 func _on_mouse_button(event: InputEventMouseButton) -> void:
 	if event.button_index == MOUSE_BUTTON_WHEEL_UP or event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 		if camera != null and event.pressed:
@@ -108,6 +119,8 @@ func _on_mouse_button(event: InputEventMouseButton) -> void:
 				notches = -notches
 			camera.zoom_at_screen(get_viewport().get_mouse_position(), notches)
 			get_viewport().set_input_as_handled()
+		return
+	if not editing_enabled:
 		return
 	if event.button_index != MOUSE_BUTTON_LEFT and event.button_index != MOUSE_BUTTON_RIGHT:
 		return
@@ -146,6 +159,8 @@ func _on_mouse_motion(event: InputEventMouseMotion) -> void:
 
 func _on_key(event: InputEventKey) -> void:
 	if _dragging:
+		return
+	if not editing_enabled and event.keycode != KEY_HOME:
 		return
 	_message = ""
 	var handled := true
@@ -202,9 +217,8 @@ func _on_key(event: InputEventKey) -> void:
 		get_viewport().set_input_as_handled()
 		_update_status()
 
+
 # --------------------------------------------------------------------- strokes
-
-
 func _begin_stroke(button: int, cell: Vector2i) -> void:
 	_message = ""
 	_dragging = true
@@ -264,8 +278,6 @@ func _clamp_to_map(cell: Vector2i) -> Vector2i:
 		clampi(cell.x, 0, editor.map.width - 1),
 		clampi(cell.y, 0, editor.map.height - 1),
 	)
-
-# ------------------------------------------------------------------- helpers
 
 
 func _frame_map() -> void:
@@ -395,6 +407,8 @@ func _update_status() -> void:
 	if not editor.current_path.is_empty():
 		file_text = editor.current_path
 	lines.append("File: %s" % file_text)
+	if not editing_enabled:
+		lines.append("PREVIEW: editing is paused. Press the Preview button (or V) to go back.")
 	if editor.map == null:
 		lines.append("NO MAP: assign default_type (and available_types) on the MapEditor node.")
 	if not _message.is_empty():

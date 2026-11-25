@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://bmxbj67rn18mb"]
+
+[ext_resource type="Script" uid="uid://cmfv82w2makxs" path="res://scenes/ui/pause_menu.gd" id="1_pause"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=2086810694]
+script = ExtResource("1_pause")
+
+[node name="Panel" type="Control" parent="." unique_id=255440160]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Dim" type="ColorRect" parent="Panel" unique_id=313712364]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="Center" type="CenterContainer" parent="Panel" unique_id=152687459]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Box" type="PanelContainer" parent="Panel/Center" unique_id=946870000]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Panel/Center/Box" unique_id=991223708]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 28
+
+[node name="Layout" type="VBoxContainer" parent="Panel/Center/Box/Margin" unique_id=1417878939]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Panel/Center/Box/Margin/Layout" unique_id=773513908]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="Panel/Center/Box/Margin/Layout" unique_id=738801560]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+text = "Resume"
+
+[node name="OptionsButton" type="Button" parent="Panel/Center/Box/Margin/Layout" unique_id=1216469935]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="Panel/Center/Box/Margin/Layout" unique_id=476092894]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+text = "Quit"

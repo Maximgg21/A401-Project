@@ -49,5 +49,14 @@ func gain_block(amount: int) -> void:
 	block += amount
 
 
+func spend_movement(amount: int) -> bool:
+	if amount > movement:
+		return false
+	movement -= amount
+	movement_changed.emit()
+	return true
+
+
 func gain_movement(amount: int) -> void:
 	movement += amount
+	movement_changed.emit()

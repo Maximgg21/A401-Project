@@ -34,52 +34,6 @@ func _ready() -> void:
 	_hud.add_theme_color_override("font_outline_color", Color.BLACK)
 	_hud.add_theme_constant_override("outline_size", 3)
 
-# ------------------------------------------------------------------ view API
-
-
-## Cell under the mouse, in this node's local space (works with cameras / offsets).
-func mouse_cell() -> Vector2i:
-	var p := get_local_mouse_position()
-	return Vector2i(floori(p.x / tile_size), floori(p.y / tile_size))
-
-
-func set_hover(cell: Vector2i) -> void:
-	if cell != hover_cell:
-		hover_cell = cell
-		queue_redraw()
-
-
-func set_preview(cells: Array[Vector2i]) -> void:
-	_preview = cells
-	queue_redraw()
-
-
-func clear_preview() -> void:
-	_preview = []
-	queue_redraw()
-
-
-## costs: Dictionary of Vector2i -> int (as returned in CombatPathfinder's "costs").
-func set_reach(costs: Dictionary) -> void:
-	_reach = costs
-	queue_redraw()
-
-
-func set_status(text: String) -> void:
-	_hud.text = text
-
-# ------------------------------------------------------------------- drawing
-
-
-func _on_map_changed(_map: CombatMap) -> void:
-	_preview = []
-	_reach = { }
-	queue_redraw()
-
-
-func _on_tiles_changed(_positions: Array[Vector2i]) -> void:
-	queue_redraw() # fine for prototype-sized rooms; redraw only dirty cells later if needed
-
 
 func _draw() -> void:
 	if editor == null or editor.map == null:
@@ -143,6 +97,50 @@ func _draw() -> void:
 	# Hover outline
 	if editor.in_bounds(hover_cell):
 		draw_rect(_cell_rect(hover_cell), Color.WHITE, false, 2.0)
+
+
+# ------------------------------------------------------------------ view API
+## Cell under the mouse, in this node's local space (works with cameras / offsets).
+func mouse_cell() -> Vector2i:
+	var p := get_local_mouse_position()
+	return Vector2i(floori(p.x / tile_size), floori(p.y / tile_size))
+
+
+func set_hover(cell: Vector2i) -> void:
+	if cell != hover_cell:
+		hover_cell = cell
+		queue_redraw()
+
+
+func set_preview(cells: Array[Vector2i]) -> void:
+	_preview = cells
+	queue_redraw()
+
+
+func clear_preview() -> void:
+	_preview = []
+	queue_redraw()
+
+
+## costs: Dictionary of Vector2i -> int (as returned in CombatPathfinder's "costs").
+func set_reach(costs: Dictionary) -> void:
+	_reach = costs
+	queue_redraw()
+
+
+func set_status(text: String) -> void:
+	_hud.text = text
+
+
+# ------------------------------------------------------------------- drawing
+func _on_map_changed(_map: CombatMap) -> void:
+	_preview = []
+	_reach = { }
+	queue_redraw()
+
+
+func _on_tiles_changed(_positions: Array[Vector2i]) -> void:
+	queue_redraw() # fine for prototype-sized rooms; redraw only dirty cells later if needed
 
 
 func _cell_rect(cell: Vector2i) -> Rect2:

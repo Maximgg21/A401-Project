@@ -1,22 +1,20 @@
 class_name MapEditor
 extends Node2D
+
 # HOW TO USE:
 #press f6 to launch the editor. By default it loads the sample map.
 #currently only some tile types have a color.
 #currently to resize the room, the size of the sample room needs to be changed
-
 #NOTE: I did NOT implement any secrity with this as it is a very simple api to help make rooms
 #so be careful when changing files. Almost everything beyond this file is vibecoded so stuff WILL break.
 #ALSO: spawn points will represent the positions for the max number of enemies the room can spawn with.
 #Encounters with less than the max will choose randomly between their teams' spawn locations
-
 #TODO:
 #A proper UI
 #render preview
 #decorations layer
 #non-enemy objects (such as furniture)
 #control to change room size
-
 signal map_changed(map: CombatMap) # new / loaded / resized map
 signal tiles_changed(positions: Array[Vector2i]) # after every edit, undo, redo
 signal spawns_changed
@@ -36,40 +34,6 @@ const DIRECTIONS: Array[Vector2i] = [Vector2i.UP, Vector2i.DOWN, Vector2i.LEFT, 
 @export var default_size := Vector2i(12, 8)
 @export var available_types: Array[MapTileType] = []
 
-
-class TileEdit extends RefCounted:
-	var position: Vector2i
-	var before: MapTile # may be null if the slot was uninitialised
-	var after: MapTile
-
-
-	func _init(p: Vector2i, b: MapTile, a: MapTile) -> void:
-		position = p
-		before = b
-		after = a
-
-
-class SpawnEdit extends RefCounted:
-	var kind: int # MapEditor.SpawnKind
-	var position: Vector2i
-	var added: bool
-
-
-	func _init(k: int, p: Vector2i, a: bool) -> void:
-		kind = k
-		position = p
-		added = a
-
-
-class Step extends RefCounted:
-	var tiles: Array[TileEdit] = []
-	var spawns: Array[SpawnEdit] = []
-
-
-	func is_empty() -> bool:
-		return tiles.is_empty() and spawns.is_empty()
-
-
 var map: CombatMap
 var current_path := ""
 var player_spawns: Array[Vector2i] = []
@@ -83,6 +47,35 @@ var _dirty: Dictionary[Vector2i, bool] = { }
 var _spawns_dirty := false
 
 
+#validation (vibecoded so it might not work)
+static func validate_template(t: RoomTemplate) -> PackedStringArray:
+	var issues := PackedStringArray()
+	if t == null:
+		issues.append("Template is null.")
+		return issues
+	if t.width <= 0 or t.height <= 0:
+		issues.append("Template has non-positive dimensions.")
+		return issues
+	if t.tile_indices.size() != t.width * t.height:
+		issues.append(
+			"tile_indices.size() (%d) != width * height (%d)."
+			% [t.tile_indices.size(), t.width * t.height]
+		)
+		return issues
+	if t.tile_palette.is_empty():
+		issues.append("tile_palette is empty.")
+		return issues
+	for type in t.tile_palette:
+		if type == null:
+			issues.append("tile_palette contains a null entry.")
+			return issues
+	for index in t.tile_indices:
+		if index < 0 or index >= t.tile_palette.size():
+			issues.append("tile_indices contains out-of-range palette index %d." % index)
+			return issues
+	return issues
+
+
 func _ready() -> void:
 	if default_type != null and default_type not in available_types:
 		available_types.push_front(default_type)
@@ -93,9 +86,8 @@ func _ready() -> void:
 	else:
 		push_warning("MapEditor: assign default_type (and available_types) in the inspector.")
 
+
 #map lifecycle
-
-
 func new_map(width: int, height: int, fill_type: MapTileType) -> void:
 	if width <= 0 or height <= 0 or fill_type == null:
 		push_error("MapEditor.new_map: need positive size and a fill tile type.")
@@ -202,36 +194,6 @@ func resize(new_width: int, new_height: int, fill_type: MapTileType) -> void:
 	map_changed.emit(map)
 	spawns_changed.emit()
 
-#validation (vibecoded so it might not work)
-
-
-static func validate_template(t: RoomTemplate) -> PackedStringArray:
-	var issues := PackedStringArray()
-	if t == null:
-		issues.append("Template is null.")
-		return issues
-	if t.width <= 0 or t.height <= 0:
-		issues.append("Template has non-positive dimensions.")
-		return issues
-	if t.tile_indices.size() != t.width * t.height:
-		issues.append(
-			"tile_indices.size() (%d) != width * height (%d)."
-			% [t.tile_indices.size(), t.width * t.height]
-		)
-		return issues
-	if t.tile_palette.is_empty():
-		issues.append("tile_palette is empty.")
-		return issues
-	for type in t.tile_palette:
-		if type == null:
-			issues.append("tile_palette contains a null entry.")
-			return issues
-	for index in t.tile_indices:
-		if index < 0 or index >= t.tile_palette.size():
-			issues.append("tile_indices contains out-of-range palette index %d." % index)
-			return issues
-	return issues
-
 
 #Structural problems with the working map (empty = fine). Blocks saving.
 @warning_ignore("integer_division")
@@ -275,9 +237,8 @@ func get_warnings() -> PackedStringArray:
 				)
 	return warnings
 
+
 # other stuff
-
-
 func in_bounds(pos: Vector2i) -> bool:
 	return map != null and map.in_bounds(pos)
 
@@ -350,9 +311,8 @@ func get_rect_cells(a: Vector2i, b: Vector2i, filled: bool = true) -> Array[Vect
 				cells.append(Vector2i(x, y))
 	return cells
 
+
 #tile editing API
-
-
 func set_tile_type(pos: Vector2i, type: MapTileType) -> bool:
 	_begin_op()
 	var changed := _set_type(pos, type)
@@ -419,9 +379,8 @@ func flood_fill(start: Vector2i, type: MapTileType) -> int:
 	_end_op()
 	return count
 
+
 #spawn API
-
-
 ## A tile holds at most one spawn. Setting a spawn replaces any existing one on that tile;
 ## SpawnKind.NONE removes it. Returns true if anything changed.
 func set_spawn(pos: Vector2i, kind: SpawnKind) -> bool:
@@ -444,9 +403,8 @@ func toggle_spawn(pos: Vector2i, kind: SpawnKind) -> bool:
 		return set_spawn(pos, SpawnKind.NONE)
 	return set_spawn(pos, kind)
 
+
 #history
-
-
 func begin_batch() -> void:
 	_batch_depth += 1
 
@@ -506,9 +464,8 @@ func clear_history() -> void:
 	_spawns_dirty = false
 	_emit_history()
 
+
 #internals
-
-
 func _begin_op() -> void:
 	begin_batch()
 
@@ -593,3 +550,36 @@ func _flush() -> void:
 
 func _emit_history() -> void:
 	history_changed.emit(can_undo(), can_redo())
+
+
+class TileEdit extends RefCounted:
+	var position: Vector2i
+	var before: MapTile # may be null if the slot was uninitialised
+	var after: MapTile
+
+
+	func _init(p: Vector2i, b: MapTile, a: MapTile) -> void:
+		position = p
+		before = b
+		after = a
+
+
+class SpawnEdit extends RefCounted:
+	var kind: int # MapEditor.SpawnKind
+	var position: Vector2i
+	var added: bool
+
+
+	func _init(k: int, p: Vector2i, a: bool) -> void:
+		kind = k
+		position = p
+		added = a
+
+
+class Step extends RefCounted:
+	var tiles: Array[TileEdit] = []
+	var spawns: Array[SpawnEdit] = []
+
+
+	func is_empty() -> bool:
+		return tiles.is_empty() and spawns.is_empty()
