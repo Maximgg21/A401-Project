@@ -9,4 +9,4 @@ var enemy_data: EnemyData:
 
 func _init(new_data: EnemyData) -> void:
 	super(new_data)
-	team = Combatant.Team.ENEMY
+	team = Team.ENEMY

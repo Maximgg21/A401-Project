@@ -32,9 +32,14 @@ func start_combat() -> void:
 	start_turn()
 
 
-func play_card(card: Card) -> void:
+func play_card(card: Card, target: MapEntity = null) -> void:
+	if card.data.needs_target():
+		if target == null or target.team not in [MapEntity.Team.ENEMY, MapEntity.Team.NEUTRAL]:
+			ScreenShake.shake()
+			return
+
 	if hero.spend_energy(card.data.cost):
-		var context := EffectContext.new(hero, enemy)
+		var context := EffectContext.new(hero, target)
 		for effect in card.data.effects:
 			effect.apply(context)
 		deck.discard_one(card)

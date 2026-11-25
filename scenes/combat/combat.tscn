@@ -6,11 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://dogku6ym3gdjy" path="res://entities/player/hero_view.tscn" id="4_4voa6"]
 [ext_resource type="PackedScene" uid="uid://dhp4fscjgdk1a" path="res://entities/enemies/enemy_view.tscn" id="5_ijgaf"]
 
-[node name="Combat" type="Node2D" unique_id=176349451 node_paths=PackedStringArray("manager", "enemy_view", "hero_view")]
+[node name="Combat" type="Node2D" unique_id=176349451 node_paths=PackedStringArray("manager", "enemy_view", "hero_view", "hud")]
 script = ExtResource("1_6aonj")
 manager = NodePath("CombatManager")
 enemy_view = NodePath("Enemy")
 hero_view = NodePath("Hero")
+hud = NodePath("CanvasLayer/CombatHud")
 
 [node name="CombatManager" type="Node2D" parent="." unique_id=1142577891]
 script = ExtResource("2_ltalu")

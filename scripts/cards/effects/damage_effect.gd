@@ -11,3 +11,7 @@ func apply(context: EffectContext) -> void:
 
 func get_description() -> String:
 	return "Deal %d damage" % amount
+
+
+func needs_target() -> bool:
+	return true
