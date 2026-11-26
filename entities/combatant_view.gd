@@ -2,7 +2,7 @@ class_name CombatantView
 extends CharacterBody2D
 
 signal hovered(combatant: Combatant)
-signal unhovered()
+signal unhovered(combatant: Combatant)
 
 var combatant: Combatant
 
@@ -14,12 +14,26 @@ func setup(new_combatant: Combatant) -> void:
 	input_pickable = true
 	combatant = new_combatant
 	combatant.health_changed.connect(_on_health_changed)
+	combatant.died.connect(_on_died)
 	_on_health_changed()
 	sprite.sprite_frames = combatant.data.sprite
 
 
 func _on_health_changed() -> void:
 	health_bar.set_health(combatant.current_health, combatant.max_health)
+
+
+func _on_died() -> void:
+	input_pickable = false
+	sprite.modulate = Color.WHITE
+	health_bar.hide()
+	unhovered.emit(combatant)
+
+
+func play_death() -> void:
+	if sprite.sprite_frames.has_animation("death"):
+		sprite.play("death")
+		await sprite.animation_finished
 
 
 func _mouse_enter() -> void:
@@ -29,4 +43,4 @@ func _mouse_enter() -> void:
 
 func _mouse_exit() -> void:
 	sprite.modulate = Color.WHITE
-	unhovered.emit()
+	unhovered.emit(combatant)
