@@ -29,6 +29,7 @@ func _input(event: InputEvent) -> void:
 			# Clicked on nothing while a card is selected
 			if selected_card and not selected_target:
 				deselect()
+				get_viewport().set_input_as_handled()
 		else:
 			_on_mouse_released()
 	elif mouse.button_index == MOUSE_BUTTON_RIGHT and not mouse.pressed:
