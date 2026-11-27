@@ -3,10 +3,18 @@ extends RefCounted
 
 signal health_changed
 
+enum Team {
+	NONE,
+	ALLY,
+	ENEMY,
+	NEUTRAL,
+}
+
 #this represents enemies and allies or really anything with hp such as destructible furniture
 var position: Vector2i
 var max_health: int
 var current_health: int
+var team: Team = Team.NONE
 
 
 func _init() -> void:

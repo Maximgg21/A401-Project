@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dj5whwdk17pgj" path="res://scenes/combat/health_bar.tscn" id="3_oc5v4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6okyl"]
-size = Vector2(22, 8)
+size = Vector2(32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oc5v4"]
 atlas = ExtResource("2_esr7y")
@@ -44,10 +44,11 @@ animations = [{
 }]
 
 [node name="Enemy" type="CharacterBody2D" unique_id=789386245]
+input_pickable = true
 script = ExtResource("1_hv3ni")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1410431970]
-position = Vector2(0, -4)
+position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_6okyl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1453703730]

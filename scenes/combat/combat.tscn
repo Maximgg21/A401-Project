@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bbmpmn6vea6b2" path="res://scenes/combat/combat_map.tscn" id="6_jgg25"]
 [ext_resource type="Script" uid="uid://dn70k2cqmklra" path="res://scenes/combat/movement_overlay.gd" id="8_uakg0"]
 
-[node name="Combat" type="Node2D" unique_id=176349451 node_paths=PackedStringArray("manager", "renderer", "enemy_view", "hero_view", "overlay")]
+[node name="Combat" type="Node2D" unique_id=176349451 node_paths=PackedStringArray("manager", "renderer", "enemy_view", "hero_view", "overlay", "hud")]
 script = ExtResource("1_6aonj")
 test_room = ExtResource("2_ijgaf")
 manager = NodePath("CombatManager")
@@ -17,6 +17,7 @@ renderer = NodePath("CombatMap")
 enemy_view = NodePath("Enemy")
 hero_view = NodePath("Hero")
 overlay = NodePath("MovementOverlay")
+hud = NodePath("CanvasLayer/CombatHud")
 
 [node name="CombatManager" type="Node2D" parent="." unique_id=1142577891]
 script = ExtResource("2_ltalu")

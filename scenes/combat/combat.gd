@@ -7,6 +7,7 @@ extends Node2D
 @export var enemy_view: EnemyView
 @export var hero_view: HeroView
 @export var overlay: MovementOverlay
+@export var hud: CombatHud
 
 
 func _ready() -> void:
@@ -26,6 +27,11 @@ func _ready() -> void:
 	entities.bind_view(manager.hero, hero_view)
 	entities.bind_view(manager.enemy, enemy_view)
 	overlay.setup(manager, renderer.map_renderer)
+
+	enemy_view.hovered.connect(hud._on_target_hovered)
+	enemy_view.unhovered.connect(hud._on_target_unhovered)
+	hero_view.hovered.connect(hud._on_target_hovered)
+	hero_view.unhovered.connect(hud._on_target_unhovered)
 
 	manager.start_combat()
 

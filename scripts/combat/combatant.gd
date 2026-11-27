@@ -10,17 +10,10 @@ enum Movement {
 	WATER,
 	FLYING,
 }
-enum Team {
-	NONE,
-	ALLY,
-	ENEMY,
-	NEUTRAL,
-}
 
 var speed: int # How many movement do I gain every turn
 var movement: int # How many tiles can I move
 var block: int
-var team: Team
 var movement_type: Movement
 var data: CombatantData
 

@@ -11,11 +11,12 @@ const SMALL_HAND := { "overlap": 0.85, "angle": 5.0, "drop": 4.0 }
 const FULL_HAND := { "overlap": 0.55, "angle": 3.0, "drop": 3.0 }
 
 var card_hovered: CardView
+var selected_card: CardView
 
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		var mouse_pos = get_local_mouse_position()
+		var mouse_pos := get_local_mouse_position()
 		var prev_card_hovered = card_hovered
 		card_hovered = null
 
@@ -24,20 +25,34 @@ func _input(event: InputEvent) -> void:
 				if not card_hovered or card.z_index > card_hovered.z_index:
 					card_hovered = card
 
-		if prev_card_hovered and prev_card_hovered != card_hovered:
+		if (
+			prev_card_hovered and prev_card_hovered != card_hovered
+			and prev_card_hovered != selected_card
+		):
 			prev_card_hovered.set_hovered(false)
-		if card_hovered and card_hovered != prev_card_hovered:
+		if card_hovered and card_hovered != prev_card_hovered and not selected_card:
 			card_hovered.set_hovered(true)
 
 	if (
 		event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT
-		and event.pressed and card_hovered
+		and event.pressed and card_hovered and not selected_card
 	):
-		card_clicked.emit(card_hovered.card)
+		selected_card = card_hovered
+		card_clicked.emit(card_hovered)
+		get_viewport().set_input_as_handled()
+
+
+func deselect() -> void:
+	if selected_card and selected_card != card_hovered:
+		selected_card.set_hovered(false)
+	selected_card = null
+	if card_hovered:
+		card_hovered.set_hovered(true)
 
 
 func display_hand(hand: Array[Card]) -> void:
 	card_hovered = null
+	selected_card = null
 	var nodes = get_children()
 	for node in nodes:
 		node.queue_free()

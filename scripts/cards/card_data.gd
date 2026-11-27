@@ -28,6 +28,13 @@ enum CardRarity {
 @export_multiline var description_override: String = ""
 
 
+func needs_target() -> bool:
+	return effects.any(
+		func(effect):
+			return effect.needs_target(),
+	)
+
+
 func get_description() -> String:
 	if description_override:
 		return description_override
