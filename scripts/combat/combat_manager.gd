@@ -66,13 +66,19 @@ func _run_enemy_turn() -> void:
 	for e in get_enemies():
 		if state != State.ENEMY_TURN:
 			return
-		# TODO: needs enemy ai :pleading:
+		e.start_turn()
+		for cell in _plan_move(e, hero, e.movement):
+			move_entity(e, cell)
 		await get_tree().create_timer(0.3).timeout
+		if _is_adjacent(get_cell_of(e), get_cell_of(hero)):
+			hero.take_damage(e.enemy_data.damage)
+			await get_tree().create_timer(0.3).timeout
 
 
 func start_turn() -> void:
 	hero.start_turn()
 	_set_state(State.PLAYER_TURN)
+	update_intents()
 	deck.draw(5) # TODO: change default to a constant, probably in hero.gd
 
 
@@ -170,6 +176,8 @@ func _on_entity_died(entity: MapEntity) -> void:
 		_end_combat(false)
 	elif get_enemies().is_empty():
 		_end_combat(true)
+	else:
+		update_intents()
 
 
 func _end_combat(victory: bool) -> void:
@@ -220,3 +228,48 @@ func move_hero(target: Vector2i) -> void:
 			break
 	is_moving = false
 	refresh_reachable()
+	update_intents()
+
+
+func update_intents() -> void:
+	for e in get_enemies():
+		var path := _plan_move(e, hero, e.speed)
+		var end_cell: Vector2i = get_cell_of(e) if path.is_empty() else path.back()
+		if _is_adjacent(end_cell, get_cell_of(hero)):
+			e.set_intent(Enemy.Intent.ATTACK)
+		else:
+			e.set_intent(Enemy.Intent.MOVE)
+
+
+func _plan_move(mover: Combatant, target: MapEntity, budget: int) -> Array[Vector2i]:
+	var path: Array[Vector2i] = []
+	var start := get_cell_of(mover)
+	# Search with no movement limit so walls don't trap it, then cut the path at the budget
+	var result := _pathfinder.find_reachable_tiles(
+		map,
+		start,
+		999,
+		mover,
+		_blocked_cells(mover),
+	)
+	var costs: Dictionary[Vector2i, int] = result.costs
+	var goal := start
+	var best := -1
+	for direction in CombatPathfinder.DIRECTIONS:
+		var cell := get_cell_of(target) + direction
+		if costs.has(cell) and (best == -1 or costs[cell] < best):
+			goal = cell
+			best = costs[cell]
+	if best == -1:
+		return path
+
+	for cell in _pathfinder.reconstruct_path(result.came_from, start, goal):
+		if costs[cell] > budget:
+			break
+		path.append(cell)
+	return path
+
+
+func _is_adjacent(a: Vector2i, b: Vector2i) -> bool:
+	var offset := a - b
+	return absi(offset.x) + absi(offset.y) == 1
