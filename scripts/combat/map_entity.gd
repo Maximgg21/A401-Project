@@ -2,6 +2,7 @@ class_name MapEntity
 extends RefCounted
 
 signal health_changed
+signal died
 
 enum Team {
 	NONE,
@@ -26,5 +27,8 @@ func take_damage(amount: int) -> void:
 	if amount == 0:
 		return
 
+	var was_alive := current_health > 0
 	current_health = clampi(current_health - amount, 0, max_health)
 	health_changed.emit()
+	if was_alive and current_health == 0:
+		died.emit()

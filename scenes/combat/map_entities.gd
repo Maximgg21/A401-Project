@@ -37,6 +37,8 @@ func _on_entity_removed(entity: MapEntity, _cell: Vector2i) -> void:
 	if view == null:
 		return
 	_views.erase(entity)
+	if entity.current_health == 0:
+		await view.play_death()
 	var tween := create_tween()
 	tween.tween_property(view, "modulate:a", 0.0, FADE_TIME)
 	tween.tween_callback(view.hide)

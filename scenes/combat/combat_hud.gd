@@ -11,6 +11,8 @@ var selected_target: Combatant
 @onready var draw_pile_label: Label = %DrawPileLabel
 @onready var discard_pile_label: Label = %DiscardPileLabel
 @onready var target_arrow: TargetArrow = %TargetArrow
+@onready var end_turn_button: TextureButton = %EndTurnButton
+@onready var result_label: Label = %ResultLabel
 
 
 func _ready() -> void:
@@ -18,6 +20,7 @@ func _ready() -> void:
 	manager.deck.piles_changed.connect(_on_piles_changed)
 	manager.hero.energy_changed.connect(_on_energy_changed)
 	hand_view.card_clicked.connect(_on_card_clicked)
+	manager.combat_ended.connect(_on_combat_ended)
 
 
 func _input(event: InputEvent) -> void:
@@ -67,14 +70,24 @@ func _on_target_hovered(combatant: Combatant) -> void:
 	selected_target = combatant
 
 
-func _on_target_unhovered() -> void:
-	selected_target = null
+func _on_target_unhovered(combatant: Combatant) -> void:
+	if selected_target == combatant:
+		selected_target = null
 
 
 func _on_mouse_released() -> void:
 	if selected_card and selected_target:
 		manager.play_card(selected_card, selected_target)
 		deselect()
+
+
+func _on_combat_ended(victory: bool) -> void:
+	deselect()
+	hand_view.hide()
+	hand_view.set_process_input(false)
+	end_turn_button.disabled = true
+	result_label.text = "Victory" if victory else "Defeat"
+	result_label.show()
 
 
 func _on_piles_changed(draw_count: int, discard_count: int) -> void:

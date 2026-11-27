@@ -81,8 +81,13 @@ func start_combat() -> void:
 
 
 func play_card(card: Card, target: MapEntity = null) -> void:
+	if state != State.PLAYER_TURN:
+		return
 	if card.data.needs_target():
-		if target == null or target.team not in [MapEntity.Team.ENEMY, MapEntity.Team.NEUTRAL]:
+		if (
+			target == null or target.current_health == 0
+			or target.team not in [MapEntity.Team.ENEMY, MapEntity.Team.NEUTRAL]
+		):
 			ScreenShake.shake()
 			return
 
@@ -133,6 +138,7 @@ func place_entity(entity: MapEntity, cell: Vector2i) -> bool:
 		return false
 	_cell_of[entity] = cell
 	_entity_at[cell] = entity
+	entity.died.connect(_on_entity_died.bind(entity))
 	entity_placed.emit(entity, cell)
 	return true
 
@@ -155,6 +161,22 @@ func remove_entity(entity: MapEntity) -> void:
 	_cell_of.erase(entity)
 	_entity_at.erase(cell)
 	entity_removed.emit(entity, cell)
+
+
+func _on_entity_died(entity: MapEntity) -> void:
+	## Remove the dead entity from the map and check if the fight is over
+	remove_entity(entity)
+	if entity == hero:
+		_end_combat(false)
+	elif get_enemies().is_empty():
+		_end_combat(true)
+
+
+func _end_combat(victory: bool) -> void:
+	if state == State.WIN or state == State.LOSE:
+		return
+	_set_state(State.WIN if victory else State.LOSE)
+	combat_ended.emit(victory)
 
 
 func refresh_reachable() -> void:

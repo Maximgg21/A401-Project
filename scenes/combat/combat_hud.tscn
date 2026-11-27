@@ -137,6 +137,29 @@ texture_normal = SubResource("CompressedTexture2D_okdr1")
 texture_pressed = SubResource("CompressedTexture2D_xxsmo")
 texture_hover = SubResource("CompressedTexture2D_fi5gp")
 
+[node name="ResultLabel" type="Label" parent="." unique_id=1730584216]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -50.0
+offset_right = 200.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_xxsmo")
+theme_override_font_sizes/font_size = 64
+text = "Victory"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="TargetArrow" type="Node2D" parent="." unique_id=1817178806]
 unique_name_in_owner = true
 z_index = 101
