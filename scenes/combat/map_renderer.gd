@@ -179,3 +179,9 @@ func get_shape(v_open: bool, h_open: bool, c_open: bool) -> int:
 	if c_open:
 		return Shape.INNER # only the diagonal is open: concave notch
 	return Shape.FILL
+
+
+func map_global_rect() -> Rect2:
+	var tile := tile_pixel_size()
+	var top_left := logical_to_global(Vector2i.ZERO) - tile * 0.5
+	return Rect2(top_left, Vector2(map_width, map_height) * tile)

@@ -8,8 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://dhp4fscjgdk1a" path="res://entities/enemies/enemy_view.tscn" id="5_ijgaf"]
 [ext_resource type="PackedScene" uid="uid://bbmpmn6vea6b2" path="res://scenes/combat/combat_map.tscn" id="6_jgg25"]
 [ext_resource type="Script" uid="uid://dn70k2cqmklra" path="res://scenes/combat/movement_overlay.gd" id="8_uakg0"]
+[ext_resource type="Script" uid="uid://crca0h0nw1qhh" path="res://scenes/combat/combat_camera.gd" id="9_8cw2p"]
 
-[node name="Combat" type="Node2D" unique_id=176349451 node_paths=PackedStringArray("manager", "renderer", "enemy_view", "hero_view", "overlay", "hud")]
+[node name="Combat" type="Node2D" unique_id=176349451 node_paths=PackedStringArray("manager", "renderer", "enemy_view", "hero_view", "overlay", "hud", "camera")]
 script = ExtResource("1_6aonj")
 test_room = ExtResource("2_ijgaf")
 manager = NodePath("CombatManager")
@@ -18,6 +19,7 @@ enemy_view = NodePath("Enemy")
 hero_view = NodePath("Hero")
 overlay = NodePath("MovementOverlay")
 hud = NodePath("CanvasLayer/CombatHud")
+camera = NodePath("CombatCamera")
 
 [node name="CombatManager" type="Node2D" parent="." unique_id=1142577891]
 script = ExtResource("2_ltalu")
@@ -45,3 +47,7 @@ z_index = 1
 script = ExtResource("8_uakg0")
 
 [node name="CombatMap" parent="." unique_id=696438421 instance=ExtResource("6_jgg25")]
+
+[node name="CombatCamera" type="Camera2D" parent="." unique_id=324383533]
+position = Vector2(104, 217)
+script = ExtResource("9_8cw2p")
