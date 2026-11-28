@@ -36,6 +36,14 @@ func play_death() -> void:
 		await sprite.animation_finished
 
 
+func play_walk(dir: Vector2) -> void:
+	if combatant.current_health == 0:
+		return
+	sprite.play("idle" if dir == Vector2.ZERO else "run")
+	if dir.x != 0:
+		sprite.flip_h = dir.x < 0
+
+
 func _mouse_enter() -> void:
 	sprite.modulate = Color(1.4, 1.4, 1.4)
 	hovered.emit(combatant)

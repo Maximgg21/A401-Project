@@ -10,6 +10,12 @@ func setup(new_combatant: Combatant) -> void:
 	sprite.play("idle_down")
 
 
+func play_walk(dir: Vector2) -> void:
+	if hero.current_health == 0:
+		return
+	_animate(dir)
+
+
 func _animate(dir: Vector2) -> void:
 	var state := "idle" if dir == Vector2.ZERO else "walk"
 	var facing := sprite.animation.trim_prefix("idle_").trim_prefix("walk_")

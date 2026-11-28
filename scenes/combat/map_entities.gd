@@ -1,12 +1,13 @@
 class_name MapEntities
 extends Node2D
 
-const MOVE_TIME := 0
+const MOVE_TIME := 0.15
 const FADE_TIME := 0
 
 var _manager: CombatManager
 var _renderer: MapRenderer
 var _views: Dictionary[MapEntity, CombatantView] = { }
+var _paths: Dictionary[CombatantView, Array] = { }
 
 
 func setup(manager: CombatManager, renderer: MapRenderer) -> void:
@@ -23,13 +24,29 @@ func bind_view(entity: Combatant, view: CombatantView) -> void:
 	view.global_position = _renderer.logical_to_global(_manager.get_cell_of(entity))
 
 
-func _on_entity_moved(entity: MapEntity, _from: Vector2i, to: Vector2i) -> void:
+func _on_entity_moved(entity: MapEntity, from: Vector2i, to: Vector2i) -> void:
 	var view: CombatantView = _views.get(entity)
 	if view == null:
 		return
-	var tween := create_tween()
-	tween.tween_property(view, "global_position", _renderer.logical_to_global(to), MOVE_TIME)
-	# TODO: drive the walk animation (HeroView._animate) from the move direction
+	# The manager moves a whole path in one frame, so queue the cells and walk them one by one
+	if _paths.has(view):
+		_paths[view].append(to)
+		return
+	_paths[view] = [to]
+	_walk(view, from)
+
+
+func _walk(view: CombatantView, from: Vector2i) -> void:
+	var path: Array = _paths[view]
+	while not path.is_empty():
+		var to: Vector2i = path.pop_front()
+		view.play_walk(Vector2(to - from))
+		var tween := create_tween()
+		tween.tween_property(view, "global_position", _renderer.logical_to_global(to), MOVE_TIME)
+		await tween.finished
+		from = to
+	_paths.erase(view)
+	view.play_walk(Vector2.ZERO)
 
 
 func _on_entity_removed(entity: MapEntity, _cell: Vector2i) -> void:
