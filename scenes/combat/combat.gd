@@ -8,6 +8,7 @@ extends Node2D
 @export var hero_view: HeroView
 @export var overlay: MovementOverlay
 @export var hud: CombatHud
+@export var camera: CombatCamera
 
 
 func _ready() -> void:
@@ -32,6 +33,8 @@ func _ready() -> void:
 	enemy_view.unhovered.connect(hud._on_target_unhovered)
 	hero_view.hovered.connect(hud._on_target_hovered)
 	hero_view.unhovered.connect(hud._on_target_unhovered)
+
+	camera.setup(renderer.map_renderer)
 
 	manager.start_combat()
 
