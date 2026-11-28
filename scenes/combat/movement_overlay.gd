@@ -4,20 +4,29 @@ extends Node2D
 @export var fill := Color(0.3, 0.7, 1.0, 0.35)
 @export var border := Color(0.6, 0.85, 1.0, 0.9)
 @export var font_size := 14
+@export var range_fill := Color(1.0, 0.3, 0.3, 0.3)
+@export var range_border := Color(1.0, 0.5, 0.5, 0.9)
 
 var fontslop := preload("res://assets/fonts/Cinzel/Cinzel-Regular.ttf")
 
 var _renderer: MapRenderer
 var _costs: Dictionary = { }
+var _range: Array[Vector2i] = []
 
 
 func setup(manager: CombatManager, renderer: MapRenderer) -> void:
 	_renderer = renderer
 	manager.reachable_changed.connect(_on_reachable_changed)
+	manager.range_changed.connect(_on_range_changed)
 
 
 func _on_reachable_changed(costs: Dictionary) -> void:
 	_costs = costs
+	queue_redraw()
+
+
+func _on_range_changed(cells: Array[Vector2i]) -> void:
+	_range = cells
 	queue_redraw()
 
 
@@ -26,6 +35,11 @@ func _draw() -> void:
 		return
 	var size := _renderer.tile_pixel_size()
 	var font := fontslop
+	for cell in _range:
+		var center := to_local(_renderer.logical_to_global(cell))
+		var rect := Rect2(center - size * 0.5, size)
+		draw_rect(rect, range_fill)
+		draw_rect(rect, range_border, false, 1.0)
 	for cell in _costs:
 		var center := to_local(_renderer.logical_to_global(cell))
 		var rect := Rect2(center - size * 0.5, size)

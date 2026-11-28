@@ -40,6 +40,8 @@ func _input(event: InputEvent) -> void:
 
 
 func deselect() -> void:
+	if selected_card:
+		manager.hide_range()
 	selected_card = null
 	target_arrow.stop()
 	hand_view.deselect()
@@ -64,6 +66,7 @@ func _on_card_clicked(card: CardView) -> void:
 	var start_point := Vector2(card.size.x / 2, 0)
 	start_point = card.get_global_transform() * start_point
 	target_arrow.start(start_point)
+	manager.show_range(selected_card)
 
 
 func _on_target_hovered(combatant: Combatant) -> void:

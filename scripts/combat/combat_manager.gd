@@ -16,6 +16,7 @@ signal entity_moved(entity: MapEntity, from: Vector2i, to: Vector2i)
 signal entity_removed(entity: MapEntity, cell: Vector2i)
 signal combat_ended(victory: bool)
 signal reachable_changed(costs: Dictionary)
+signal range_changed(cells: Array[Vector2i])
 
 const ORC := preload("res://data/enemies/orc.tres")
 
@@ -94,6 +95,7 @@ func play_card(card: Card, target: MapEntity = null) -> void:
 		if (
 			target == null or target.current_health == 0
 			or target.team not in [MapEntity.Team.ENEMY, MapEntity.Team.NEUTRAL]
+			or _distance(get_cell_of(hero), get_cell_of(target)) > card.data.target_range
 		):
 			ScreenShake.shake()
 			return
@@ -130,12 +132,18 @@ func get_entity_at(cell: Vector2i) -> MapEntity:
 
 
 func can_enter(entity: MapEntity, cell: Vector2i) -> bool:
-	if not map.in_bounds(cell) or _entity_at.has(cell):
+	if _entity_at.has(cell):
+		return false
+	# TODO: also reject chasm/bars (allow flying over chasms) using entity.movement_type
+	return _is_floor(cell)
+
+
+func _is_floor(cell: Vector2i) -> bool:
+	if not map.in_bounds(cell):
 		return false
 	var tile := map.get_tile(cell)
 	if tile == null or tile.type == null:
 		return false
-	# TODO: also reject chasm/bars (allow flying over chasms) using entity.movement_type
 	return tile.type.render_type != MapTile.RenderType.WALL
 
 
@@ -271,6 +279,29 @@ func _plan_move(mover: Combatant, target: MapEntity, budget: int) -> Array[Vecto
 	return path
 
 
+func show_range(card: Card) -> void:
+	var cells: Array[Vector2i] = []
+	var start := get_cell_of(hero)
+	var card_range := card.data.target_range
+	for x in range(-card_range, card_range + 1):
+		for y in range(-card_range, card_range + 1):
+			var cell := start + Vector2i(x, y)
+			if cell != start and _distance(start, cell) <= card_range and _is_floor(cell):
+				cells.append(cell)
+	reachable_changed.emit({ }) # hide the movement tiles while aiming
+	range_changed.emit(cells)
+
+
+func hide_range() -> void:
+	var cells: Array[Vector2i] = []
+	range_changed.emit(cells)
+	refresh_reachable()
+
+
 func _is_adjacent(a: Vector2i, b: Vector2i) -> bool:
+	return _distance(a, b) == 1
+
+
+func _distance(a: Vector2i, b: Vector2i) -> int:
 	var offset := a - b
-	return absi(offset.x) + absi(offset.y) == 1
+	return absi(offset.x) + absi(offset.y)
