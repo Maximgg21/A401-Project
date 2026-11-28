@@ -139,6 +139,6 @@ animations = [{
 script = ExtResource("1_5vrln")
 name = "Orc"
 base_health = 25
-base_speed = 1
+base_speed = 3
 sprite = SubResource("SpriteFrames_ty5vs")
 metadata/_custom_type_script = "uid://bkxof0lkpan6c"

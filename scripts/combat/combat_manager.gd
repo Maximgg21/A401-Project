@@ -67,9 +67,10 @@ func _run_enemy_turn() -> void:
 		if state != State.ENEMY_TURN:
 			return
 		e.start_turn()
-		for cell in _plan_move(e, hero, e.movement):
+		var path := _plan_move(e, hero, e.movement)
+		for cell in path:
 			move_entity(e, cell)
-		await get_tree().create_timer(0.3).timeout
+		await get_tree().create_timer(0.3 + path.size() * MapEntities.MOVE_TIME).timeout
 		if _is_adjacent(get_cell_of(e), get_cell_of(hero)):
 			hero.take_damage(e.enemy_data.damage)
 			await get_tree().create_timer(0.3).timeout
