@@ -22,6 +22,7 @@ enum CardRarity {
 @export var rarity: CardRarity
 @export var art: Texture2D
 @export var upgraded: bool = false
+@export var target_range: int = 1
 
 @export_group("Effects")
 @export var effects: Array[CardEffect] = []
@@ -41,4 +42,6 @@ func get_description() -> String:
 	var lines: PackedStringArray = []
 	for effect in effects:
 		lines.append(effect.get_description())
+	if needs_target():
+		lines.append("Range %d" % target_range)
 	return "\n".join(lines)
